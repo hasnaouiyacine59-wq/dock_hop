@@ -21,7 +21,7 @@ with Camoufox(
         timeout=60000,
     )
     print(page.content())
-    page.goto("https://example.com", wait_until="domcontentloaded", timeout=60000)
+    page.goto("https://my.nordaccount.com/", wait_until="domcontentloaded", timeout=60000)
     page.wait_for_load_state("networkidle", timeout=60000)
     print("Title:", page.title())
     input('lol')
