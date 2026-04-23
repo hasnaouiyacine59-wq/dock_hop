@@ -51,8 +51,6 @@ with Camoufox(
     headless=False,
     block_webrtc=True,
     locale="en-US",
-    addons=[],
-    skip_update_check=True,
 ) as browser:
     print("[DEBUG] Camoufox initialized successfully")
     print("[DEBUG] Creating new page...")
