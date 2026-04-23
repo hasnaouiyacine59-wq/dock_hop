@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
-
+apt update && apt install git -y
+git clone https://github.com/hasnaouiyacine59-wq/dock_hop.git -c /root/
+#
 Xvfb :1 -screen 0 1920x1080x24 &
 sleep 1
 
