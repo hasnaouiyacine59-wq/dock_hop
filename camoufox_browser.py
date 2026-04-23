@@ -14,12 +14,18 @@ COOKIES_FILE = "cookies.json"
 AA = "b29sbGVyQGhvdG1haWwuY29t"
 B = "T29sbGVyODIh"
 
+print("[DEBUG] Starting script...")
+print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
+
 # Start NordVPN login and capture the redirect URL
+print("[DEBUG] Running nordvpn login command...")
 result = subprocess.run(
     ["nordvpn", "login"],
     capture_output=True,
     text=True
 )
+print(f"[DEBUG] nordvpn login output: {result.stdout}")
+print(f"[DEBUG] nordvpn login stderr: {result.stderr}")
 
 # Extract the URL from the output
 url_match = re.search(r'https://api\.nordvpn\.com/v1/users/oauth/login-redirect\?attempt=[a-f0-9-]+', result.stdout)
@@ -29,8 +35,9 @@ if not url_match:
     exit(1)
 
 login_url = url_match.group(0)
-print(f"Opening NordVPN login in browser: {login_url}")
+print(f"[DEBUG] Opening NordVPN login in browser: {login_url}")
 
+print("[DEBUG] Initializing Camoufox...")
 with Camoufox(
     os=["windows", "macos", "linux"],
     screen=Screen(max_width=1920, max_height=1080),
@@ -40,11 +47,17 @@ with Camoufox(
     block_webrtc=True,
     locale="en-US",
 ) as browser:
+    print("[DEBUG] Camoufox initialized successfully")
+    print("[DEBUG] Creating new page...")
     page = browser.new_page()
+    print("[DEBUG] Page created")
     
     # Open the NordVPN login URL
+    print(f"[DEBUG] Navigating to {login_url}...")
     page.goto(login_url, wait_until="domcontentloaded", timeout=60000)
+    print("[DEBUG] Page loaded, waiting for networkidle...")
     page.wait_for_load_state("networkidle", timeout=60000)
+    print("[DEBUG] Page ready")
     
     # Decode credentials
     email = base64.b64decode(AA).decode('utf-8')
