@@ -2,7 +2,7 @@
 set -e
 apt update && apt install git -y
 git clone https://github.com/hasnaouiyacine59-wq/dock_hop.git -c /root/
-
+#
 # Start virtual display
 Xvfb :1 -screen 0 1280x800x24 &
 sleep 1
