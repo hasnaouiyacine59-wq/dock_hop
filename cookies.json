@@ -1,0 +1,42 @@
+[
+  {
+    "name": "csrf",
+    "value": "wiUEKhOdIJLzpMyMpAIgyKQbUHmPsEob",
+    "domain": "nordaccount.com",
+    "path": "/",
+    "expires": 1776994679,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "sessions_bag",
+    "value": "MTc3NjkwODI3OXxVSXFjYWhoQmdVa3FfSTZNd1BfWGdrWTZYTjB4emR6c1MtaXVMTzdsTVFWRkdxcWdNeXBibkxTT19jYVNrSVN4UmRKSm1oTS1KdmU0N19vdWRrSVd3WWFNR0Z6NGVnX3RnTkZYMGlzbllpNUQxdkJPfETKYfC8JrVv8i1bVcJXBwpFB4PAw4WpU5SECwRLEG0z",
+    "domain": "nordaccount.com",
+    "path": "/",
+    "expires": 1808444279,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "request",
+    "value": "7773dc33-49e4-425e-9957-1408f104d253",
+    "domain": "nordaccount.com",
+    "path": "/",
+    "expires": 1779500279,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "__cf_bm",
+    "value": "XU_rIdIb6gg3Zowwe.fZAL2.XbP8sw85IQy6vmRtRPs-1776908279.2683592-1.0.1.1-5TXQZYpbeKoLJ6HZjebaeXDQIP9U6EzWecdcgS.XnQOBJ2yxLROj1cJ777K7I7hc21uTPJJ2EwKlT5ijTdrPytTIW0pb3k4o1pLjjw9rwy0JU_xeRBUEwy._.g9ofs5BiQG1C.p8JZ_TzP112WTDQw",
+    "domain": ".nordaccount.com",
+    "path": "/",
+    "expires": 1776910079,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  }
+]
