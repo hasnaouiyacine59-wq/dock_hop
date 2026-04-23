@@ -1,33 +1,121 @@
 import json
+import subprocess
+import re
+import base64
+import time
 from camoufox.sync_api import Camoufox
 from browserforge.fingerprints import Screen
 
 COOKIES_FILE = "cookies.json"
+AA = "b29sbGVyQGhvdG1haWwuY29t"
+B = "T29sbGVyODIh"
+
+# Start NordVPN login and capture the redirect URL
+result = subprocess.run(
+    ["nordvpn", "login"],
+    capture_output=True,
+    text=True
+)
+
+# Extract the URL from the output
+url_match = re.search(r'https://api\.nordvpn\.com/v1/users/oauth/login-redirect\?attempt=[a-f0-9-]+', result.stdout)
+if not url_match:
+    print("Failed to get login URL from nordvpn command")
+    print("Output:", result.stdout)
+    exit(1)
+
+login_url = url_match.group(0)
+print(f"Opening NordVPN login in browser: {login_url}")
 
 with Camoufox(
     os=["windows", "macos", "linux"],
     screen=Screen(max_width=1920, max_height=1080),
-    geoip=True,          # auto-detects geo/timezone/locale from VPN exit IP
+    geoip=True,
     humanize=True,
     headless=False,
-    # headless="virtual",
-    block_webrtc=True,   # prevent real IP leaks
+    block_webrtc=True,
     locale="en-US",
 ) as browser:
     page = browser.new_page()
-    page.goto(
-        "https://nordaccount.com/product/nordvpn/login/success?exchange_token=ZWVmMzg0ZDE4NjQxNjMyZmZkODM5NTdlYWQ3ZGU4MmY1M2E4ODIyYjY5OGM1MGFkYjRiMDBjZTgzMTU1MzhiMg%3D%3D&redirect_upon_open=1&return=1",
-        wait_until="domcontentloaded",
-        timeout=60000,
-    )
-    print(page.content())
-    page.goto("https://my.nordaccount.com/", wait_until="domcontentloaded", timeout=60000)
+    
+    # Open the NordVPN login URL
+    page.goto(login_url, wait_until="domcontentloaded", timeout=60000)
     page.wait_for_load_state("networkidle", timeout=60000)
-    print("Title:", page.title())
-    input('lol')
-
+    
+    # Decode credentials
+    email = base64.b64decode(AA).decode('utf-8')
+    password = base64.b64decode(B).decode('utf-8')
+    print(f"Using email: {email}")
+    
+    # Fill email field
+    try:
+        email_field = page.locator('input[type="email"]').first
+        email_field.fill(email)
+        print("Email field filled")
+        time.sleep(1)
+        page.keyboard.press("Enter")
+        print("Pressed Enter")
+    except Exception as e:
+        print(f"Could not fill email field: {e}")
+    
+    # Wait for password field
+    time.sleep(2)
+    page.wait_for_load_state("networkidle", timeout=60000)
+    
+    # Fill password field
+    try:
+        password_field = page.locator('input[type="password"]').first
+        password_field.fill(password)
+        print("Password field filled")
+        time.sleep(1)
+        page.keyboard.press("Enter")
+        print("Pressed Enter to submit password")
+    except Exception as e:
+        print(f"Could not fill password field: {e}")
+    
+    # Wait for and accept the "Open nordvpn" dialog
+    print("Waiting for nordvpn:// protocol popup...")
+    time.sleep(3)
+    
+    # Handle the dialog/popup to allow opening nordvpn://
+    try:
+        # Accept any dialog that appears
+        page.on("dialog", lambda dialog: dialog.accept())
+        print("Dialog handler set")
+    except:
+        pass
+    
+    # Try to click "Open nordvpn" or similar button
+    try:
+        page.get_by_role("button", name=re.compile("open|allow|continue", re.IGNORECASE)).click()
+        print("Clicked allow/open button")
+    except:
+        print("No popup button found, may have auto-accepted")
+    
+    # Wait for redirect to nordvpn:// callback
+    print("Waiting for login to complete...")
+    time.sleep(5)
+    
+    # The page should redirect to nordvpn://callback or show success
+    # Check if we got redirected to success page
+    final_url = page.url
+    print(f"Final URL: {final_url}")
+    
+    # If the login was successful, the nordvpn CLI should now be authenticated
+    # Check nordvpn status
+    time.sleep(2)
+    status_result = subprocess.run(
+        ["nordvpn", "account"],
+        capture_output=True,
+        text=True
+    )
+    print("NordVPN Account Status:")
+    print(status_result.stdout)
+    
     # Save cookies
     cookies = browser.contexts[0].cookies()
     with open(COOKIES_FILE, "w") as f:
         json.dump(cookies, f, indent=2)
     print(f"Cookies saved to {COOKIES_FILE}")
+    
+    input("Press Enter to close browser...")

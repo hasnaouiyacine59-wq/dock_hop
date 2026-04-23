@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-Xvfb :1 -screen 0 1280x800x24 &
+Xvfb :1 -screen 0 1920x1080x24 &
 sleep 1
 
 fluxbox &
