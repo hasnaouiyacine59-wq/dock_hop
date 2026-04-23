@@ -24,6 +24,7 @@ with Camoufox(
     page.goto("https://example.com", wait_until="domcontentloaded", timeout=60000)
     page.wait_for_load_state("networkidle", timeout=60000)
     print("Title:", page.title())
+    input('lol')
 
     # Save cookies
     cookies = browser.contexts[0].cookies()
