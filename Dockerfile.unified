@@ -35,11 +35,8 @@ RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o
 RUN apt-get update && apt-get install -y nordvpn && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install camoufox
-
-# Pre-download Camoufox binary to avoid download on every run
-RUN python3 -c "from camoufox.sync_api import Camoufox; from browserforge.fingerprints import Screen; \
-with Camoufox(headless=True) as browser: pass"
+COPY requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt
 
 EXPOSE 6080
 
