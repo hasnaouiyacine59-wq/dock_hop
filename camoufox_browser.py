@@ -3,8 +3,12 @@ import subprocess
 import re
 import base64
 import time
+import os
 from camoufox.sync_api import Camoufox
 from browserforge.fingerprints import Screen
+
+# Set DISPLAY for Docker environment
+os.environ['DISPLAY'] = ':1'
 
 COOKIES_FILE = "cookies.json"
 AA = "b29sbGVyQGhvdG1haWwuY29t"
