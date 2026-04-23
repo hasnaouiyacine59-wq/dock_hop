@@ -38,7 +38,8 @@ RUN apt-get update && apt-get install -y nordvpn && \
 RUN pip3 install camoufox
 
 # Pre-download Camoufox binary to avoid download on every run
-RUN python3 -c "from camoufox.sync_api import Camoufox; from browserforge.fingerprints import Screen; Camoufox(headless=True).close()"
+RUN python3 -c "from camoufox.sync_api import Camoufox; from browserforge.fingerprints import Screen; \
+with Camoufox(headless=True) as browser: pass"
 
 EXPOSE 6080
 
