@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     novnc \
     websockify \
     openbox \
-    && rm -rf /var/lib/apt/lists/*
+    lxterminal \
+    tinyproxy
 
 RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/nordvpn.gpg] https://repo.nordvpn.com/deb/nordvpn/debian stable main" \
@@ -24,6 +25,17 @@ RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o
 
 RUN apt-get update && apt-get install -y nordvpn && \
     rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /var/lib/openbox && \
+    echo '<?xml version="1.0" encoding="UTF-8"?>\n\
+<openbox_menu xmlns="http://openbox.org/">\n\
+  <menu id="root-menu" label="Openbox 3">\n\
+    <item label="Terminal"><action name="Execute"><command>lxterminal</command></action></item>\n\
+  </menu>\n\
+</openbox_menu>' > /var/lib/openbox/debian-menu.xml
+
+RUN sed -i 's/^Allow 127.0.0.1$/Allow 0.0.0.0\/0/' /etc/tinyproxy/tinyproxy.conf && \
+    sed -i 's/^Port 8888$/Port 8888/' /etc/tinyproxy/tinyproxy.conf
 
 EXPOSE 6080
 

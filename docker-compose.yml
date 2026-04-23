@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  vpn:
+    build: .
+    container_name: nordvpn
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    environment:
+      - NORDVPN_TOKEN=${NORDVPN_TOKEN}
+    ports:
+      - "6080:6080"  # VPN container desktop
+      - "6081:6081"  # Browser container desktop
+    restart: unless-stopped
+
+  browser:
+    build:
+      context: .
+      dockerfile: Dockerfile.browser
+    container_name: browser
+    network_mode: "service:vpn"
+    depends_on:
+      - vpn
+    environment:
+      - DISPLAY=:1
+

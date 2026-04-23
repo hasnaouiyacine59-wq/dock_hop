@@ -16,23 +16,14 @@ websockify --web /usr/share/novnc 6080 localhost:5900 &
 
 echo "noVNC running at http://localhost:6080/vnc.html"
 
-# Start NordVPN
+# Start NordVPN daemon only
 nordvpnd &
-sleep 5
+sleep 2
 
-if [ -n "$NORDVPN_TOKEN" ]; then
-    nordvpn login --token "$NORDVPN_TOKEN"
-else
-    echo "Error: NORDVPN_TOKEN not set"
-    exit 1
-fi
+# Start tinyproxy
+tinyproxy -c /etc/tinyproxy/tinyproxy.conf
 
-nordvpn set technology nordlynx
-nordvpn set killswitch enabled
-
-nordvpn connect
-
-echo "Current IP:"
-curl -s https://ipinfo.io/ip
+echo "NordVPN daemon started. Use 'docker exec -it nordvpn nordvpn login --token \$NORDVPN_TOKEN' to connect."
+echo "HTTP proxy available on port 8888"
 
 tail -f /dev/null
