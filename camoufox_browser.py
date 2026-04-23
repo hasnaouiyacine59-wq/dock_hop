@@ -17,12 +17,17 @@ B = "T29sbGVyODIh"
 print("[DEBUG] Starting script...")
 print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
 
+# Set analytics to avoid interactive prompt
+print("[DEBUG] Setting nordvpn analytics...")
+subprocess.run(["nordvpn", "set", "analytics", "off"], capture_output=True)
+
 # Start NordVPN login and capture the redirect URL
 print("[DEBUG] Running nordvpn login command...")
 result = subprocess.run(
     ["nordvpn", "login"],
     capture_output=True,
-    text=True
+    text=True,
+    timeout=10
 )
 print(f"[DEBUG] nordvpn login output: {result.stdout}")
 print(f"[DEBUG] nordvpn login stderr: {result.stderr}")
