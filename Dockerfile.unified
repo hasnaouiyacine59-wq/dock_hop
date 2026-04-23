@@ -17,6 +17,15 @@ RUN apt-get update && apt-get install -y \
     novnc \
     websockify \
     fluxbox \
+    libgtk-3-0 \
+    libdbus-glib-1-2 \
+    libasound2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
