@@ -4,7 +4,7 @@ set -e
 Xvfb :1 -screen 0 1280x800x24 &
 sleep 1
 
-openbox &
+fluxbox &
 
 x11vnc -display :1 -nopw -forever -quiet &
 

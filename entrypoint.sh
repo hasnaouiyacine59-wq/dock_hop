@@ -6,7 +6,7 @@ Xvfb :1 -screen 0 1280x800x24 &
 sleep 1
 
 # Start window manager
-openbox &
+fluxbox &
 
 # Start VNC server
 x11vnc -display :1 -nopw -forever -quiet &

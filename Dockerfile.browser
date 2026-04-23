@@ -9,18 +9,20 @@ RUN apt-get update && apt-get install -y \
     x11vnc \
     novnc \
     websockify \
-    openbox \
+    fluxbox \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo 'user_pref("privacy.resistFingerprinting", true);\n\
-user_pref("privacy.trackingprotection.enabled", true);\n\
-user_pref("privacy.trackingprotection.fingerprinting.enabled", true);\n\
-user_pref("privacy.trackingprotection.cryptomining.enabled", true);\n\
-user_pref("privacy.firstparty.isolate", true);\n\
-user_pref("webgl.disabled", true);\n\
-user_pref("media.peerconnection.enabled", false);\n\
-user_pref("geo.enabled", false);' > /etc/firefox/syspref.js
+RUN mkdir -p /etc/firefox
+
+RUN echo 'user_pref("privacy.resistFingerprinting", true);' > /etc/firefox/syspref.js && \
+    echo 'user_pref("privacy.trackingprotection.enabled", true);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("privacy.trackingprotection.fingerprinting.enabled", true);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("privacy.trackingprotection.cryptomining.enabled", true);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("privacy.firstparty.isolate", true);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("webgl.disabled", true);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("media.peerconnection.enabled", false);' >> /etc/firefox/syspref.js && \
+    echo 'user_pref("geo.enabled", false);' >> /etc/firefox/syspref.js
 
 EXPOSE 6081
 
