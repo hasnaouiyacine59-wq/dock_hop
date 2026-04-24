@@ -20,8 +20,10 @@ COOKIES_FILE = "cookies.json"
 # B = "UGRrNzUwNTcyOSE="
 # AA = "b29sbGVyQGhvdG1haWwuY29t"
 # B = "T29sbGVyODIh"
-AA = "bnNnXzI1QHlhaG9vLmNvbQ=="
-B = "TGlvbjAwMDAh"
+# AA = "bnNnXzI1QHlhaG9vLmNvbQ=="
+# B = "TGlvbjAwMDAh"
+AA = "bmljb2xhc3phazIyQGdtYWlsLmNvbQ=="
+B = "ZHppdWJhczEx"
 print("[DEBUG] Starting script...")
 print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
 
