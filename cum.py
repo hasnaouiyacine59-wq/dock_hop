@@ -1,4 +1,4 @@
-import os, json, time, random, requests, argparse, platform, uuid, socket
+import os, json, time, random, requests, argparse, platform, uuid, socket, sys
 os.environ['CAMOUFOX_NO_UPDATE'] = '1'
 
 VERSION = "v5.0.0"
@@ -89,7 +89,14 @@ import subprocess
 def nordvpn_connect(country=None):
     """Connect NordVPN, optionally to a specific country."""
     cmd = ['nordvpn', 'connect'] + ([country] if country else []  )
-    subprocess.run(cmd, check=False)
+    result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    
+    # Check for connection error
+    if "couldn't connect you to the VPN" in result.stdout or "couldn't connect you to the VPN" in result.stderr:
+        print("[ERROR] NordVPN connection failed. Exiting...")
+        sys.exit(1)
+    
+    return result
 
 def nordvpn_disconnect():
     subprocess.run(['nordvpn', 'disconnect'], check=False)
