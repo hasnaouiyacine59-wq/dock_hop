@@ -38,6 +38,8 @@ RUN apt-get update && apt-get install -y nordvpn && \
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
+RUN python3 -m camoufox fetch
+
 EXPOSE 6080
 
 COPY entrypoint-unified.sh /entrypoint.sh
