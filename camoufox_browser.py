@@ -51,6 +51,7 @@ with Camoufox(
     headless=False,
     block_webrtc=True,
     locale="en-US",
+    timeout=120000,
 ) as browser:
     print("[DEBUG] Camoufox initialized successfully")
     print("[DEBUG] Creating new page...")
@@ -59,9 +60,9 @@ with Camoufox(
     
     # Open the NordVPN login URL
     print(f"[DEBUG] Navigating to {login_url}...")
-    page.goto(login_url, wait_until="domcontentloaded", timeout=60000)
+    page.goto(login_url, wait_until="domcontentloaded", timeout=120000)
     print("[DEBUG] Page loaded, waiting for networkidle...")
-    page.wait_for_load_state("networkidle", timeout=60000)
+    page.wait_for_load_state("networkidle", timeout=120000)
     print("[DEBUG] Page ready")
     
     # Decode credentials
