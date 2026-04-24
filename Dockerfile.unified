@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
     novnc \
     websockify \
     fluxbox \
+    lxterminal \
+    zsh \
+    git \
     libgtk-3-0 \
     libdbus-glib-1-2 \
     libasound2 \
@@ -28,6 +31,12 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
+# Set zsh as default shell
+RUN chsh -s /bin/zsh
+
+# Install oh-my-zsh
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
 RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/nordvpn.gpg] https://repo.nordvpn.com/deb/nordvpn/debian stable main" \
     > /etc/apt/sources.list.d/nordvpn.list
@@ -37,8 +46,6 @@ RUN apt-get update && apt-get install -y nordvpn && \
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
-
-RUN python3 -m camoufox fetch
 
 EXPOSE 6080
 
