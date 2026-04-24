@@ -1,6 +1,8 @@
 services:
   vpn-browser:
-    image: quay.io/mylastres0rt05_redhat/norvya:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.unified
     container_name: vpn-browser
     cap_add:
       - NET_ADMIN
