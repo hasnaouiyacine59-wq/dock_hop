@@ -117,7 +117,7 @@ with Camoufox(
     
     # Wait for and accept the "Open nordvpn" dialog
     print("Waiting for login to complete and redirect...")
-    time.sleep(5)
+    time.sleep(10)
     
     # Extract the callback URL from the page
     print("[DEBUG] Extracting callback URL from page...")
