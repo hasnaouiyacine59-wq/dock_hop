@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     lxterminal \
     zsh \
     git \
+    jq \
     libgtk-3-0 \
     libdbus-glib-1-2 \
     libasound2 \
@@ -31,6 +32,7 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN python -m camoufox fetch
 # Set zsh as default shell
 RUN chsh -s /bin/zsh
 
