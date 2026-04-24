@@ -28,6 +28,10 @@ websockify --web /usr/share/novnc 6080 localhost:5900 &
 nordvpnd &
 sleep 2
 
+# Configure NordVPN to allow local network access
+nordvpn set killswitch off
+nordvpn whitelist add subnet 172.0.0.0/8
+
 echo "noVNC running at http://localhost:6080/vnc.html"
 echo "NordVPN daemon started. Use 'docker exec -it <container> nordvpn login --token \$TOKEN' to connect."
 
