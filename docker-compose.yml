@@ -14,10 +14,5 @@ services:
       - NORDVPN_TOKEN=${NORDVPN_TOKEN}
     ports:
       - "6080:6080"
-    volumes:
-      - camoufox-cache:/root/.cache/camoufox
     restart: unless-stopped
-
-volumes:
-  camoufox-cache:
 
