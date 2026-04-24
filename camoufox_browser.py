@@ -18,8 +18,10 @@ os.environ['DISPLAY'] = ':1'
 COOKIES_FILE = "cookies.json"
 # AA = "cGF0cmlja19rZXJyQGxpdmUuY29t"
 # B = "UGRrNzUwNTcyOSE="
-AA = "b29sbGVyQGhvdG1haWwuY29t"
-B = "T29sbGVyODIh"
+# AA = "b29sbGVyQGhvdG1haWwuY29t"
+# B = "T29sbGVyODIh"
+AA = "bnNnXzI1QHlhaG9vLmNvbQ=="
+B = "TGlvbjAwMDAh"
 print("[DEBUG] Starting script...")
 print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
 
@@ -69,6 +71,14 @@ with Camoufox(
     print("[DEBUG] Page loaded, waiting for networkidle...")
     page.wait_for_load_state("networkidle", timeout=60000)
     print("[DEBUG] Page ready")
+    
+    # Inject auto-reload script (every 2 minutes)
+    page.evaluate("""
+        setInterval(() => {
+            console.log('Auto-reloading page...');
+            location.reload();
+        }, 120000);
+    """)
     
     # Decode credentials
     email = base64.b64decode(AA).decode('utf-8')
