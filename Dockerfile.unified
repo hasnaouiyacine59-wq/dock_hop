@@ -17,8 +17,7 @@ RUN apt-get update && apt-get install -y \
     novnc \
     websockify \
     fluxbox \
-    lxterminal \
-    zsh \
+    xterm \
     git \
     jq \
     libgtk-3-0 \
@@ -31,13 +30,6 @@ RUN apt-get update && apt-get install -y \
     libgbm1 \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
-
-RUN python3 -m camoufox fetch
-# Set zsh as default shell
-RUN chsh -s /bin/zsh
-
-# Install oh-my-zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/nordvpn.gpg] https://repo.nordvpn.com/deb/nordvpn/debian stable main" \
