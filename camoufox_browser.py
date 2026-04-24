@@ -99,24 +99,41 @@ with Camoufox(
     print("Waiting for nordvpn:// protocol popup...")
     time.sleep(3)
     
-    # Handle the dialog/popup to allow opening nordvpn://
-    try:
-        # Accept any dialog that appears
-        page.on("dialog", lambda dialog: dialog.accept())
-        print("Dialog handler set")
-    except:
-        pass
+    # The nordvpn:// protocol won't work in container
+    # Instead, wait for the success page and extract the token
+    print("Waiting for login redirect...")
+    time.sleep(5)
     
-    # Try to click "Open nordvpn" or similar button
-    try:
-        page.get_by_role("button", name=re.compile("open|allow|continue", re.IGNORECASE)).click()
-        print("Clicked allow/open button")
-    except:
-        print("No popup button found, may have auto-accepted")
+    # Check if we're on a success/callback page
+    final_url = page.url
+    print(f"[DEBUG] Current URL: {final_url}")
+    
+    # Look for exchange_token or callback URL
+    if "exchange_token" in final_url or "callback" in final_url or "success" in final_url:
+        print("Login successful! Extracting token...")
+        
+        # Try to extract token from URL
+        token_match = re.search(r'exchange_token=([^&]+)', final_url)
+        if token_match:
+            token = token_match.group(1)
+            print(f"[DEBUG] Found token: {token[:20]}...")
+            
+            # Use the token to login via CLI
+            print("Logging in to NordVPN CLI with token...")
+            token_result = subprocess.run(
+                ["nordvpn", "login", "--callback", final_url],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            print(f"[DEBUG] Token login output: {token_result.stdout}")
+            print(f"[DEBUG] Token login stderr: {token_result.stderr}")
+    else:
+        print("Could not find callback URL. Manual intervention may be needed.")
     
     # Wait for redirect to nordvpn:// callback
     print("Waiting for login to complete...")
-    time.sleep(5)
+    time.sleep(2)
     
     # The page should redirect to nordvpn://callback or show success
     # Check if we got redirected to success page
