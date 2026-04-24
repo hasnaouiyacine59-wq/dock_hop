@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python -m camoufox fetch
+RUN python3 -m camoufox fetch
 # Set zsh as default shell
 RUN chsh -s /bin/zsh
 
