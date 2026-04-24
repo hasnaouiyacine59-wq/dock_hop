@@ -95,6 +95,8 @@ with Camoufox(
         time.sleep(1)
         page.keyboard.press("Enter")
         print("Pressed Enter")
+        time.sleep(5)
+
     except Exception as e:
         print(f"Could not fill email field: {e}")
     
