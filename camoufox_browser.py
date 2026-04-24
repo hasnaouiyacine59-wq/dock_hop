@@ -110,26 +110,27 @@ with Camoufox(
     
     # Look for exchange_token or callback URL
     if "exchange_token" in final_url or "callback" in final_url or "success" in final_url:
-        print("Login successful! Extracting token...")
+        print("Login successful! Extracting callback URL...")
+        print(f"[DEBUG] Callback URL: {final_url}")
         
-        # Try to extract token from URL
-        token_match = re.search(r'exchange_token=([^&]+)', final_url)
-        if token_match:
-            token = token_match.group(1)
-            print(f"[DEBUG] Found token: {token[:20]}...")
-            
-            # Use the token to login via CLI
-            print("Logging in to NordVPN CLI with token...")
-            token_result = subprocess.run(
-                ["nordvpn", "login", "--callback", final_url],
-                capture_output=True,
-                text=True,
-                timeout=10
-            )
-            print(f"[DEBUG] Token login output: {token_result.stdout}")
-            print(f"[DEBUG] Token login stderr: {token_result.stderr}")
+        # Use the callback URL to complete CLI login
+        print("Completing NordVPN CLI login with callback URL...")
+        callback_result = subprocess.run(
+            ["nordvpn", "login", "--callback", final_url],
+            capture_output=True,
+            text=True,
+            timeout=10
+        )
+        print(f"[DEBUG] Callback login output: {callback_result.stdout}")
+        print(f"[DEBUG] Callback login stderr: {callback_result.stderr}")
+        
+        if callback_result.returncode == 0:
+            print("✓ NordVPN CLI login successful!")
+        else:
+            print("✗ NordVPN CLI login failed")
     else:
         print("Could not find callback URL. Manual intervention may be needed.")
+        print(f"Current URL: {final_url}")
     
     # Wait for redirect to nordvpn:// callback
     print("Waiting for login to complete...")
