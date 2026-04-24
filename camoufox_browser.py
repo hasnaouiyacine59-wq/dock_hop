@@ -1,6 +1,11 @@
 import json
 import subprocess
 import re
+
+
+import json
+import subprocess
+import re
 import base64
 import time
 import os
@@ -11,9 +16,10 @@ from browserforge.fingerprints import Screen
 os.environ['DISPLAY'] = ':1'
 
 COOKIES_FILE = "cookies.json"
+# AA = "cGF0cmlja19rZXJyQGxpdmUuY29t"
+# B = "UGRrNzUwNTcyOSE="
 AA = "b29sbGVyQGhvdG1haWwuY29t"
 B = "T29sbGVyODIh"
-
 print("[DEBUG] Starting script...")
 print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
 
@@ -51,7 +57,6 @@ with Camoufox(
     headless=False,
     block_webrtc=True,
     locale="en-US",
-    timeout=120000,
 ) as browser:
     print("[DEBUG] Camoufox initialized successfully")
     print("[DEBUG] Creating new page...")
@@ -60,9 +65,9 @@ with Camoufox(
     
     # Open the NordVPN login URL
     print(f"[DEBUG] Navigating to {login_url}...")
-    page.goto(login_url, wait_until="domcontentloaded", timeout=120000)
+    page.goto(login_url, wait_until="domcontentloaded", timeout=60000)
     print("[DEBUG] Page loaded, waiting for networkidle...")
-    page.wait_for_load_state("networkidle", timeout=120000)
+    page.wait_for_load_state("networkidle", timeout=60000)
     print("[DEBUG] Page ready")
     
     # Decode credentials
