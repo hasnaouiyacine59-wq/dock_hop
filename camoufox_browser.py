@@ -96,44 +96,63 @@ with Camoufox(
         print(f"Could not fill password field: {e}")
     
     # Wait for and accept the "Open nordvpn" dialog
-    print("Waiting for nordvpn:// protocol popup...")
-    time.sleep(3)
-    
-    # The nordvpn:// protocol won't work in container
-    # Instead, wait for the success page and extract the token
-    print("Waiting for login redirect...")
+    print("Waiting for login to complete and redirect...")
     time.sleep(5)
     
-    # Check if we're on a success/callback page
-    final_url = page.url
-    print(f"[DEBUG] Current URL: {final_url}")
+    # Extract the callback URL from the page
+    print("[DEBUG] Extracting callback URL from page...")
     
-    # Look for exchange_token or callback URL
-    if "exchange_token" in final_url or "callback" in final_url or "success" in final_url:
-        print("Login successful! Extracting callback URL...")
-        print(f"[DEBUG] Callback URL: {final_url}")
+    try:
+        # Get all links on the page
+        callback_url = page.evaluate('''() => {
+            const links = document.querySelectorAll('a[href*="nordvpn://"]');
+            if (links.length > 0) {
+                return links[0].href;
+            }
+            // Also check buttons with onclick
+            const buttons = document.querySelectorAll('button, a');
+            for (let btn of buttons) {
+                const onclick = btn.getAttribute('onclick') || '';
+                const href = btn.getAttribute('href') || '';
+                if (onclick.includes('nordvpn://') || href.includes('nordvpn://')) {
+                    return href || onclick.match(/nordvpn:\/\/[^'"]+/)?.[0];
+                }
+            }
+            return null;
+        }''')
         
-        # Use the callback URL to complete CLI login
-        print("Completing NordVPN CLI login with callback URL...")
-        callback_result = subprocess.run(
-            ["nordvpn", "login", "--callback", final_url],
-            capture_output=True,
-            text=True,
-            timeout=10
-        )
-        print(f"[DEBUG] Callback login output: {callback_result.stdout}")
-        print(f"[DEBUG] Callback login stderr: {callback_result.stderr}")
-        
-        if callback_result.returncode == 0:
-            print("✓ NordVPN CLI login successful!")
+        if callback_url:
+            print(f"[DEBUG] Found callback URL: {callback_url[:80]}...")
+            
+            # Complete login with the callback URL
+            print("Completing NordVPN CLI login...")
+            callback_result = subprocess.run(
+                ["nordvpn", "login", "--callback", callback_url],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            print(f"Output: {callback_result.stdout}")
+            if callback_result.stderr:
+                print(f"Error: {callback_result.stderr}")
+            
+            if callback_result.returncode == 0:
+                print("✓ NordVPN CLI login successful!")
+            else:
+                print("✗ NordVPN CLI login failed")
         else:
-            print("✗ NordVPN CLI login failed")
-    else:
-        print("Could not find callback URL. Manual intervention may be needed.")
-        print(f"Current URL: {final_url}")
+            print("Could not find callback URL automatically")
+            print(f"Current page URL: {page.url}")
+            callback_url = input("Paste the Continue button URL here: ").strip()
+            if callback_url:
+                subprocess.run(["nordvpn", "login", "--callback", callback_url])
     
-    # Wait for redirect to nordvpn:// callback
-    print("Waiting for login to complete...")
+    except Exception as e:
+        print(f"Error extracting callback URL: {e}")
+        callback_url = input("Paste the Continue button URL here: ").strip()
+        if callback_url:
+            subprocess.run(["nordvpn", "login", "--callback", callback_url])
+    
     time.sleep(2)
     
     # The page should redirect to nordvpn://callback or show success
