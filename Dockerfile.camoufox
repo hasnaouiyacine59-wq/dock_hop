@@ -2,6 +2,12 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Pin Node.js to v20 (playwright is incompatible with Node 24)
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
 # Runtime deps for camoufox (headless Firefox-based)
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -20,7 +26,7 @@ RUN apt-get update && apt-get install -y \
 ENV CAMOUFOX_PATH=/opt/camoufox
 
 COPY requirements.txt /requirements.txt
-RUN pip3 install --timeout 300 --retries 5 -r /requirements.txt && \
+RUN pip3 install --no-cache-dir --force-reinstall --timeout 300 --retries 5 -r /requirements.txt && \
     python3 -m camoufox fetch --path $CAMOUFOX_PATH
 
 CMD ["python3"]
