@@ -8,8 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install --timeout 300 --retries 5 -r /requirements.txt && \
-    python3 -m camoufox fetch && \
-    find / -name "camoufox*" -not -path "*/proc/*" 2>/dev/null | head -30 > /camoufox_paths.txt
+    python3 -m camoufox fetch
 
 
 FROM ubuntu:22.04
@@ -58,7 +57,7 @@ RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc \
 # Layer 3: copy pip packages + camoufox binary from builder (no re-download)
 COPY --from=camoufox-builder /usr/local/lib/python3.10/dist-packages /usr/local/lib/python3.10/dist-packages
 COPY --from=camoufox-builder /usr/local/bin /usr/local/bin
-COPY --from=camoufox-builder /camoufox_paths.txt /camoufox_paths.txt
+COPY --from=camoufox-builder /root/.cache/camoufox /root/.cache/camoufox
 
 EXPOSE 6080
 
