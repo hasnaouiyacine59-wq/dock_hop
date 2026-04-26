@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:1
 
+# Stage 1: system packages (rarely changes — big cache win)
 RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
@@ -20,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     xterm \
     git \
     jq \
+    dbus \
     libgtk-3-0 \
     libdbus-glib-1-2 \
     libasound2 \
@@ -29,21 +31,23 @@ RUN apt-get update && apt-get install -y \
     libxrandr2 \
     libgbm1 \
     libxshmfence1 \
-    dbus
-    #&& rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
+# Stage 2: NordVPN repo + install (changes only on nordvpn version bumps)
+RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc \
+    | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/nordvpn.gpg] https://repo.nordvpn.com/deb/nordvpn/debian stable main" \
-    > /etc/apt/sources.list.d/nordvpn.list
-
-RUN apt-get update && apt-get install -y nordvpn && \
+    > /etc/apt/sources.list.d/nordvpn.list && \
+    apt-get update && apt-get install -y nordvpn && \
     rm -rf /var/lib/apt/lists/*
 
+# Stage 3: Python deps (changes only when requirements.txt changes)
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
 EXPOSE 6080
 
+# Stage 4: entrypoint (changes most often — last so above layers stay cached)
 COPY entrypoint-unified.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
