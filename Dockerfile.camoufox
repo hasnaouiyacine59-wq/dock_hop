@@ -17,8 +17,10 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
+ENV CAMOUFOX_PATH=/opt/camoufox
+
 COPY requirements.txt /requirements.txt
-RUN pip3 install -r /requirements.txt && \
-    python3 -m camoufox fetch
+RUN pip3 install --timeout 300 --retries 5 -r /requirements.txt && \
+    python3 -m camoufox fetch --path $CAMOUFOX_PATH
 
 CMD ["python3"]

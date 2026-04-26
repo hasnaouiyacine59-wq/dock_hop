@@ -1,5 +1,4 @@
 camoufox[geoip]
 browserforge
-playwright
 opencv-python
 numpy
