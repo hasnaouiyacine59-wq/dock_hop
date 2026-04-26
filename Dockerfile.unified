@@ -1,9 +1,22 @@
+FROM ubuntu:22.04 AS camoufox-builder
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt /requirements.txt
+RUN pip3 install --timeout 300 --retries 5 -r /requirements.txt && \
+    python3 -m camoufox fetch
+
+
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:1
 
-# Stage 1: system packages (rarely changes — big cache win)
+# Layer 1: system packages (rarely changes)
 RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
@@ -33,7 +46,7 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Stage 2: NordVPN repo + install (changes only on nordvpn version bumps)
+# Layer 2: NordVPN (changes only on version bumps)
 RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc \
     | gpg --dearmor -o /usr/share/keyrings/nordvpn.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/nordvpn.gpg] https://repo.nordvpn.com/deb/nordvpn/debian stable main" \
@@ -41,13 +54,14 @@ RUN curl -sSf https://repo.nordvpn.com/gpg/nordvpn_public.asc \
     apt-get update && apt-get install -y nordvpn && \
     rm -rf /var/lib/apt/lists/*
 
-# Stage 3: Python deps (changes only when requirements.txt changes)
-COPY requirements.txt /requirements.txt
-RUN pip3 install -r /requirements.txt
+# Layer 3: copy pip packages + camoufox binary from builder (no re-download)
+COPY --from=camoufox-builder /usr/local/lib/python3.10/dist-packages /usr/local/lib/python3.10/dist-packages
+COPY --from=camoufox-builder /usr/local/bin /usr/local/bin
+COPY --from=camoufox-builder /root/.local/share/camoufox /root/.local/share/camoufox
 
 EXPOSE 6080
 
-# Stage 4: entrypoint (changes most often — last so above layers stay cached)
+# Layer 4: entrypoint (changes most often — always last)
 COPY entrypoint-unified.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
