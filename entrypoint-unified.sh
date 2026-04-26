@@ -26,13 +26,13 @@ x11vnc -display :1 -nopw -forever -quiet &
 websockify --web /usr/share/novnc 6080 localhost:5900 &
 
 # Start D-Bus (required by nordvpnd)
-mkdir -p /var/run/dbus
-dbus-daemon --system --fork
+mkdir -p /var/run/dbus /run/nordvpn
+dbus-daemon --system --fork || true
 
 # Clean up stale nordvpnd socket/pid if present
 rm -f /run/nordvpn/nordvpnd.sock /run/nordvpnd.pid
 
-nordvpnd &
+/etc/init.d/nordvpn start
 sleep 3
 
 # Configure NordVPN to allow local network access
