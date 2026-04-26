@@ -412,7 +412,8 @@ with Camoufox(
         page.mouse.click(tx, ty)
 
     # ── nav links to randomly click ──
-    NAV_HREFS = ['/', '/', '/gainers', '/losers', '/watchlist']
+    NAV_HREFS = ['/', '/', '/gainers']
+    # NAV_HREFS = ['/', '/', '/gainers', '/losers', '/watchlist']
     random.shuffle(NAV_HREFS)
 
     for href in NAV_HREFS:
@@ -442,6 +443,7 @@ with Camoufox(
                     human_click(pick)
                     page.wait_for_load_state('networkidle', timeout=20000)
                     read_iframes()
+                    time.sleep(random.uniform(6.5, 8.0))
                 else:
                     print("⚠️  No pair links found on /gainers")
 
@@ -459,7 +461,7 @@ with Camoufox(
                 else:
                     print("⚠️  No pair links found on /losers")
 
-                time.sleep(random.uniform(1.5, 3.0))
+                time.sleep(random.uniform(6.5, 8.0))
 
                 # click the CryptoScope home logo
                 logo = page.query_selector('a.text-accent.font-bold.text-lg.tracking-tight.shrink-0[href="/"]')
@@ -472,7 +474,7 @@ with Camoufox(
                 else:
                     print("⚠️  CryptoScope logo not found")
 
-                time.sleep(random.uniform(1.5, 3.0))
+                time.sleep(random.uniform(4.5, 8.0))
 
             
 
