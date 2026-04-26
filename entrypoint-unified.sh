@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+#e
 # Set timezone based on IP geolocation
 echo "Detecting timezone from IP..."
 TIMEZONE=$(curl -s http://ip-api.com/json | jq -r '.timezone' || echo "UTC")
