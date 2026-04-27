@@ -100,6 +100,17 @@ def nordvpn_connect(country=None):
 
 def nordvpn_disconnect():
     subprocess.run(['nordvpn', 'disconnect'], check=False)
+    for _ in range(30):
+        try:
+            out = subprocess.check_output(['nordvpn', 'status'], text=True)
+            if 'Disconnected' in out:
+                return
+            if 'Disconnecting' in out:
+                print('[nordvpn] disconnecting, waiting...')
+        except Exception:
+            pass
+        time.sleep(2)
+    print('[nordvpn] warning: disconnect timed out')
 
 def nordvpn_current_ip(retries=20, delay=3):
     """Poll `nordvpn status` until Connected and return the IP."""
@@ -119,7 +130,6 @@ def rotate_nordvpn(current_ip=None, country=None):
     """Disconnect, reconnect (random or to country), wait for new IP."""
     print('[nordvpn] disconnecting...')
     nordvpn_disconnect()
-    time.sleep(2)
     print(f'[nordvpn] connecting{"  to " + country if country else " randomly"}...')
     nordvpn_connect(country)
     new_ip = nordvpn_current_ip()
