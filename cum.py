@@ -73,16 +73,38 @@ OS_FONTS = {
 
 
 NORDVPN_COUNTRIES = [
-    'Albania', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bosnia_And_Herzegovina',
-    'Brazil', 'Bulgaria', 'Canada', 'Chile', 'Colombia', 'Costa_Rica', 'Croatia',
-    'Cyprus', 'Czech_Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Georgia',
-    'Germany', 'Greece', 'Hong_Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
-    'Ireland', 'Israel', 'Italy', 'Japan', 'Latvia', 'Lithuania', 'Luxembourg',
-    'Malaysia', 'Mexico', 'Moldova', 'Netherlands', 'New_Zealand', 'Nigeria', 'Norway',
-    'Poland', 'Portugal', 'Romania', 'Serbia', 'Singapore', 'Slovakia', 'Slovenia',
-    'South_Africa', 'South_Korea', 'Spain', 'Sweden', 'Switzerland', 'Taiwan',
-    'Thailand', 'Turkey', 'Ukraine', 'United_Kingdom', 'United_States', 'Vietnam',
+    'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Argentina', 'Armenia',
+    'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
+    'Belgium', 'Belize', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia_And_Herzegovina',
+    'Brazil', 'Brunei_Darussalam', 'Bulgaria', 'Cambodia', 'Canada', 'Cayman_Islands',
+    'Chad', 'Chile', 'Colombia', 'Comoros', 'Costa_Rica', 'Cote_Divoire', 'Croatia',
+    'Cyprus', 'Czech_Republic', 'Denmark', 'Dominican_Republic', 'Ecuador', 'Egypt',
+    'El_Salvador', 'Estonia', 'Ethiopia', 'Fiji', 'Finland', 'France', 'Georgia',
+    'Germany', 'Ghana', 'Greece', 'Greenland', 'Guam', 'Guatemala', 'Honduras',
+    'Hong_Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iraq', 'Ireland',
+    'Isle_Of_Man', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jersey', 'Jordan',
+    'Kazakhstan', 'Kenya', 'Kuwait', 'Lao_Peoples_Democratic_Republic', 'Latvia',
+    'Lebanon', 'Libyan_Arab_Jamahiriya', 'Liechtenstein', 'Lithuania', 'Luxembourg',
+    'Malaysia', 'Malta', 'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco',
+    'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar', 'Nepal',
+    'Netherlands', 'New_Zealand', 'Nigeria', 'North_Macedonia', 'Norway', 'Pakistan',
+    'Panama', 'Papua_New_Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland',
+    'Portugal', 'Puerto_Rico', 'Qatar', 'Romania', 'Rwanda', 'Senegal', 'Serbia',
+    'Singapore', 'Slovakia', 'Slovenia', 'Somalia', 'South_Africa', 'South_Korea',
+    'Spain', 'Sri_Lanka', 'Suriname', 'Sweden', 'Switzerland', 'Taiwan', 'Tajikistan',
+    'Tanzania', 'Thailand', 'Togo', 'Trinidad_And_Tobago', 'Tunisia', 'Turkey',
+    'Ukraine', 'United_Arab_Emirates', 'United_Kingdom', 'United_States', 'Uruguay',
+    'Uzbekistan', 'Venezuela', 'Vietnam', 'Yemen',
 ]
+
+_country_queue = []
+
+def _next_country():
+    global _country_queue
+    if not _country_queue:
+        _country_queue = NORDVPN_COUNTRIES[:]
+        random.shuffle(_country_queue)
+    return _country_queue.pop()
 
 import subprocess
 
@@ -242,7 +264,7 @@ def get_ip_info(ip):
         return {'ip': ip, 'country': '?', 'cc': 'US', 'city': '?', 'locale': 'en-US', 'timezone': 'America/New_York'}
 
 # ── connect NordVPN + resolve geo ──
-country = args.c if args.c else random.choice(NORDVPN_COUNTRIES)
+country = args.c if args.c else _next_country()
 print(f"[nordvpn] selected country: {country}")
 raw_ip = get_approved_ip(country=country)
 geo     = get_ip_info(raw_ip)
