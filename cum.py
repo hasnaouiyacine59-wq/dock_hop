@@ -289,7 +289,8 @@ print(f"[locale]  {geo['locale']} / {geo['timezone']}")
 print(f"[profile] os={profile['os']} window={profile['window']}")
 
 with Camoufox(
-    headless="virtual",
+    # headless="virtual",
+    headless=False,
     os=profile['os'],
     window=profile['window'],
     geoip=geo['ip'],

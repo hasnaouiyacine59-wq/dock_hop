@@ -63,7 +63,8 @@ with Camoufox(
     screen=Screen(max_width=1920, max_height=1080),
     geoip=True,
     humanize=True,
-    headless=True,
+    headless=False,
+    # headless=True,
     block_webrtc=True,
     locale="en-US",
 ) as browser:

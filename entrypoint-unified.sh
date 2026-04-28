@@ -30,12 +30,14 @@ sleep 1
 websockify --web /usr/share/novnc 6080 localhost:5900 &
 sleep 1
 
-# Start D-Bus
+# Start D-Bus — clean stale pid/socket first so restart works
 mkdir -p /var/run/dbus /run/nordvpn
+rm -f /var/run/dbus/pid /var/run/dbus/system_bus_socket
 dbus-daemon --system --fork || true
+sleep 1
 
 # Clean up stale nordvpnd socket/pid
-rm -f /run/nordvpn/nordvpnd.sock /run/nordvpnd.pid
+rm -f /run/nordvpn/nordvpnd.sock /run/nordvpnd.pid /run/nordvpnd.sock
 
 /etc/init.d/nordvpn start || true
 sleep 3
