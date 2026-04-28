@@ -47,4 +47,4 @@ nordvpn whitelist add subnet 172.0.0.0/8 || true
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 
-tail -f /dev/null
+exec bash dock_hop/a.sh
