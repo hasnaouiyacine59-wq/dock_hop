@@ -1,5 +1,13 @@
-import os, json, time, random, requests, argparse, platform, uuid, socket, sys, itertools, threading
+import os, json, time, random, requests, argparse, platform, uuid, socket, sys, itertools, threading, shutil, glob
 os.environ['CAMOUFOX_NO_UPDATE'] = '1'
+
+# ── clean leftover browser profiles + artifacts from previous sessions ──
+for _p in glob.glob('/tmp/playwright_firefoxdev_profile-*') + glob.glob('/tmp/playwright-artifacts-*'):
+    try:
+        shutil.rmtree(_p)
+        print(f"[clean] removed {_p}")
+    except Exception:
+        pass
 
 VERSION = "nord v2.0.0 beta"
 BANNER = f"""
