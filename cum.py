@@ -84,7 +84,7 @@ OS_FONTS = {
 
 
 NORDVPN_COUNTRIES = [
-    'Albania', 'Andorra', 'Angola', 'Argentina', 'Armenia',
+    'Albania', 'Andorra', 'Argentina', 'Armenia',
     'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
     'Belgium', 'Belize', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia_And_Herzegovina',
     'Brazil', 'Brunei_Darussalam', 'Bulgaria', 'Cambodia', 'Canada', 'Cayman_Islands',
