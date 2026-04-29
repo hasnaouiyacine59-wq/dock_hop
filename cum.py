@@ -87,7 +87,7 @@ NORDVPN_COUNTRIES = [
     'Albania', 'Andorra', 'Argentina', 'Armenia',
     'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
     'Belgium', 'Belize', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia_And_Herzegovina',
-    'Brazil', 'Brunei_Darussalam', 'Bulgaria', 'Cambodia', 'Canada', 'Cayman_Islands',
+    'Brazil', 'Bulgaria', 'Cambodia', 'Canada', 'Cayman_Islands',
     'Colombia', 'Costa_Rica', 'Cote_Divoire', 'Croatia',
     'Cyprus', 'Czech_Republic', 'Denmark', 'Ecuador', 'Egypt',
     'El_Salvador', 'Estonia', 'Finland', 'France', 'Georgia',
@@ -341,8 +341,8 @@ print(f"[geo]     {geo['ip']} [{geo['cc']}] {geo['country']}, {geo['city']} | {g
 print(f"[browser] os={profile['os']} window={profile['window']}")
 
 with Camoufox(
-    # headless="virtual",
-    headless=False,
+    headless="virtual",
+    # headless=False,
     os=profile['os'],
     window=profile['window'],
     geoip=geo['ip'],
