@@ -317,6 +317,52 @@ with Camoufox(
     # print(f"[geo] saved to session {report['session_id']}")
 
     # ── visit URL_3 first, then switch to URL_2 in the same tab ──
+    def lik():
+        first_page = page.context.pages[0]
+        iframes = page.query_selector_all('iframe')
+        for i, fr in enumerate(iframes):
+            try:
+                box = fr.bounding_box()
+                if not box:
+                    continue
+                tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
+                ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
+                page.mouse.move(tx, ty, steps=random.randint(8, 15))
+                print(f"   🖱️  hovering iframe-{i}")
+                time.sleep(random.uniform(0.5, 1.2))
+
+                # click and wait for new tab
+                with page.context.expect_page() as new_page_info:
+                    page.mouse.click(tx, ty)
+                new_tab = new_page_info.value
+                new_tab.bring_to_front()
+                new_tab.wait_for_load_state('domcontentloaded', timeout=20000)
+                print(f"   🆕  new tab opened")
+                seen_titles = set()
+                last_title = None
+
+                # track title changes through redirections
+                for _ in range(60):
+                    try:
+                        title = new_tab.title()
+                        if title and title != last_title:
+                            if 'click' in title.lower():
+                                print(f"   ⏳  title has 'click', waiting... [{title}]")
+                            else:
+                                print(f"   📄  title: {title} | url: {new_tab.url}")
+                                task_action.run(title, new_tab)
+                            last_title = title
+                    except Exception:
+                        pass
+                    time.sleep(1)
+
+                new_tab.close()
+                first_page.bring_to_front()
+                print(f"   🔙  closed new tab, back to first tab")
+
+            except Exception as e:
+                print(f"   ⚠️  iframe-{i} error: {e}")
+
     print(f"\n🌐  Navigating to {URL_3} ...")
     page.goto(URL_3, wait_until='networkidle', timeout=60000)
     print(f"✅  Page loaded: \033[96m{page.title()}\033[0m  ({page.url})")
@@ -336,6 +382,8 @@ with Camoufox(
     except Exception as e:
         print(f"   ⚠️  iframe hover error: {e}")
     time.sleep(20)
+    #new step
+    lik()
 
     # ── load URL_2 and analyse ──
     print(f"\n🌐  Navigating to {URL_2} ...")
@@ -551,47 +599,5 @@ with Camoufox(
         except Exception as e:
             print(f"⚠️  report send failed: {e}")
 
-    def lik():
-        iframes = page.query_selector_all('iframe')
-        for i, fr in enumerate(iframes):
-            try:
-                box = fr.bounding_box()
-                if not box:
-                    continue
-                tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
-                ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
-                page.mouse.move(tx, ty, steps=random.randint(8, 15))
-                print(f"   🖱️  hovering iframe-{i}")
-                time.sleep(random.uniform(0.5, 1.2))
-
-                # click and wait for new tab
-                with page.context.expect_page() as new_page_info:
-                    page.mouse.click(tx, ty)
-                new_tab = new_page_info.value
-
-                print(f"   🆕  new tab opened")
-                seen_titles = set()
-                last_title = None
-
-                # track title changes through redirections
-                for _ in range(60):
-                    try:
-                        title = new_tab.title()
-                        if title and title != last_title:
-                            if 'click' in title.lower():
-                                print(f"   ⏳  title has 'click', waiting... [{title}]")
-                            else:
-                                print(f"   📄  title: {title} | url: {new_tab.url}")
-                                task_action.run(title, new_tab)
-                            last_title = title
-                    except Exception:
-                        pass
-                    time.sleep(1)
-
-            except Exception as e:
-                print(f"   ⚠️  iframe-{i} error: {e}")
-
     lik()
-
-
 
