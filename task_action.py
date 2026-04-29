@@ -86,6 +86,82 @@ def statewins(page):
     print("   [task] statewins: done")
 
 
+DOMAINS = ["techxbox.eu.org", "beta-sig.eu.org", "itchigho.eu.org", "sec4891.eu.org", "youoneshell.eu.org"]
+
+def _gen_email():
+    user = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=random.randint(6, 10)))
+    return f"{user}@{random.choice(DOMAINS)}"
+
+def crypto_gateway(page):
+    """Task for Crypto payment gateway — click accept button and wait."""
+    accept = page.query_selector(
+        'button:has-text("Accept"), button:has-text("accept"), '
+        'button:has-text("Agree"), button:has-text("Continue"), '
+        'input[value*="Accept" i], input[value*="Agree" i]'
+    )
+    if accept:
+        print(f"   [crypto] ✅ accept button found: {(accept.inner_text() or '').strip()}")
+        accept.click()
+        print("   [crypto] ✅ clicked")
+    else:
+        print("   [crypto] ⚠️  accept button not found")
+    time.sleep(random.uniform(3, 5))
+
+def lock_com(page):
+    """Task for Lock.com — find email field, fill generated email, press Enter."""
+    selectors = [
+        '#email-mobile',
+        'input[name="email"]',
+        'input[type="email"]',
+        'input[placeholder*="email" i]',
+    ]
+    email_field = None
+    for sel in selectors:
+        try:
+            page.wait_for_selector(sel, timeout=10000)
+            email_field = page.query_selector(sel)
+            if email_field:
+                print(f"   [lock] ✅ email field found via: {sel}")
+                break
+        except Exception:
+            continue
+
+    if email_field:
+        email = _gen_email()
+        print(f"   [lock] filling: {email}")
+        email_field.click()
+        time.sleep(random.uniform(0.4, 0.8))
+        email_field.fill('')
+        email_field.type(email, delay=random.randint(60, 130))
+        time.sleep(random.uniform(0.3, 0.6))
+        email_field.press('Enter')
+        print("   [lock] ✅ Enter pressed")
+        wait = random.uniform(4, 7)
+        print(f"   [lock] waiting {wait:.1f}s for submit...")
+        time.sleep(wait)
+    else:
+        print("   [lock] ⚠️  email field not found")
+
+
+def _hostinger_horizons(page):
+    """Task for Hostinger Horizons — wait for full load, dump all elements."""
+    print(f"   [horizons] title: {page.title()} | url: {page.url}")
+    try:
+        page.wait_for_load_state('networkidle', timeout=30000)
+    except Exception:
+        pass
+    time.sleep(3)
+    elements = page.query_selector_all('*')
+    print(f"   [horizons] {len(elements)} elements on page")
+    for el in elements:
+        try:
+            tag = el.evaluate("e => e.tagName")
+            txt = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
+            print(f"      <{tag}> {txt}")
+        except Exception:
+            pass
+
+
 # ── title → task mapping ──
 TASKS = {
     "statewins": statewins,
@@ -93,6 +169,9 @@ TASKS = {
     "eloniai": lambda page: _human_scroll(page),
     "just a moment": journy_func,
     "...": journy_func,
+    "lock.com": lock_com,
+    "crypto payment gateway": crypto_gateway,
+    "hostinger horizons": lambda page: _hostinger_horizons(page),
 }
 
 
