@@ -95,16 +95,22 @@ with Camoufox(
     
     # Fill email field
     try:
-        email_field = page.locator('input[type="email"]').first
+        # Try multiple selectors with longer timeout
+        email_field = page.locator(
+            'input[type="email"], input[name="email"], input[id*="email"], input[placeholder*="email" i]'
+        ).first
+        email_field.wait_for(state="visible", timeout=60000)
         email_field.fill(email)
         print("Email field filled")
         time.sleep(1)
         page.keyboard.press("Enter")
         print("Pressed Enter")
         time.sleep(5)
-
     except Exception as e:
         print(f"Could not fill email field: {e}")
+        # Dump page HTML for debugging
+        print("[DEBUG] Page URL:", page.url)
+        print("[DEBUG] Page title:", page.title())
     
     # Wait for password field
     time.sleep(2)
