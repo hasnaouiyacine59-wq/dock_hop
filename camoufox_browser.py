@@ -75,9 +75,9 @@ with Camoufox(
     
     # Open the NordVPN login URL
     print(f"[DEBUG] Navigating to {login_url}...")
-    page.goto(login_url, wait_until="domcontentloaded", timeout=80000)
+    page.goto(login_url, wait_until="domcontentloaded", timeout=180000)
     print("[DEBUG] Page loaded, waiting for networkidle...")
-    page.wait_for_load_state("networkidle", timeout=80000)
+    page.wait_for_load_state("networkidle", timeout=180000)
     print("[DEBUG] Page ready")
     
     # Inject auto-reload script (every 2 minutes)
@@ -108,7 +108,7 @@ with Camoufox(
     
     # Wait for password field
     time.sleep(2)
-    page.wait_for_load_state("networkidle", timeout=80000)
+    page.wait_for_load_state("networkidle", timeout=180000)
     
     # Fill password field
     try:
