@@ -123,30 +123,37 @@ with Camoufox(
     
     # Wait for and accept the "Open nordvpn" dialog
     print("Waiting for login to complete and redirect...")
-    time.sleep(10)
     
+    # Wait up to 60s for nordvpn:// callback link to appear
+    callback_url = None
+    for attempt in range(12):
+        print(f"[DEBUG] Extracting callback URL from page... (attempt {attempt+1}/12)")
+        try:
+            callback_url = page.evaluate('''() => {
+                const links = document.querySelectorAll('a[href*="nordvpn://"]');
+                if (links.length > 0) return links[0].href;
+                const buttons = document.querySelectorAll('button, a');
+                for (let btn of buttons) {
+                    const onclick = btn.getAttribute('onclick') || '';
+                    const href = btn.getAttribute('href') || '';
+                    if (onclick.includes('nordvpn://') || href.includes('nordvpn://')) {
+                        return href || onclick.match(/nordvpn:\\/\\/[^'"]+/)?.[0];
+                    }
+                }
+                // Check full page HTML for nordvpn:// anywhere
+                const match = document.body.innerHTML.match(/nordvpn:\\/\\/[^"'\\s]+/);
+                return match ? match[0] : null;
+            }''')
+        except Exception:
+            callback_url = None
+        if callback_url:
+            break
+        time.sleep(5)
+
     # Extract the callback URL from the page
     print("[DEBUG] Extracting callback URL from page...")
     
     try:
-        # Get all links on the page
-        callback_url = page.evaluate('''() => {
-            const links = document.querySelectorAll('a[href*="nordvpn://"]');
-            if (links.length > 0) {
-                return links[0].href;
-            }
-            // Also check buttons with onclick
-            const buttons = document.querySelectorAll('button, a');
-            for (let btn of buttons) {
-                const onclick = btn.getAttribute('onclick') || '';
-                const href = btn.getAttribute('href') || '';
-                if (onclick.includes('nordvpn://') || href.includes('nordvpn://')) {
-                    return href || onclick.match(/nordvpn:\/\/[^'"]+/)?.[0];
-                }
-            }
-            return null;
-        }''')
-        
         if callback_url:
             print(f"[DEBUG] Found callback URL: {callback_url[:80]}...")
             
