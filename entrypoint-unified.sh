@@ -51,4 +51,6 @@ nordvpn whitelist add port 22
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 
+bash dock_hop/a.sh >> /proc/1/fd/1 2>> /proc/1/fd/2 &
+
 tail -f /dev/null
