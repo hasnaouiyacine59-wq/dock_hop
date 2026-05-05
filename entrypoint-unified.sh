@@ -44,6 +44,10 @@ sleep 3
 
 nordvpn set killswitch off || true
 nordvpn whitelist add subnet 172.0.0.0/8 || true
+nordvpn set technology openvpn
+nordvpn set protocol tcp
+nordvpn set ipv6 off
+nordvpn whitelist add port 22
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 
