@@ -1,5 +1,4 @@
 #!/bin/bash
-cd /root/dock_hop
 while true; do
-    timeout 400 python3 cum.py
+    timeout 400 python3 /dock_hop/cum.py
 done
