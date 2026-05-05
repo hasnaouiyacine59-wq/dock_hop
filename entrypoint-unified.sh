@@ -42,11 +42,9 @@ rm -f /run/nordvpn/nordvpnd.sock /run/nordvpnd.pid /run/nordvpnd.sock
 /etc/init.d/nordvpn start || true
 sleep 3
 
-[ -n "$NORDVPN_TOKEN" ] && nordvpn login --token "$NORDVPN_TOKEN" || true
-
 nordvpn set killswitch off || true
 nordvpn whitelist add subnet 172.0.0.0/8 || true
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 
-exec bash dock_hop/a.sh
+tail -f /dev/null
