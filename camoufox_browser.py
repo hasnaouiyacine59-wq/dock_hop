@@ -216,4 +216,4 @@ with Camoufox(
         json.dump(cookies, f, indent=2)
     print(f"Cookies saved to {COOKIES_FILE}")
     
-    input("Press Enter to close browser...")
+    print("Press Enter to close browser...")
