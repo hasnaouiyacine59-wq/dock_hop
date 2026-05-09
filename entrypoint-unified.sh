@@ -48,6 +48,7 @@ nordvpn set technology openvpn
 nordvpn set protocol tcp
 nordvpn set ipv6 off
 nordvpn whitelist add port 22
+nordvpn whitelist add port 6080
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 bash dock_hop/camoufox_browser.py >> /proc/1/fd/1 2>> /proc/1/fd/2 &

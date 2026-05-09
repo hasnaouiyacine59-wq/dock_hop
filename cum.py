@@ -341,8 +341,8 @@ print(f"[geo]     {geo['ip']} [{geo['cc']}] {geo['country']}, {geo['city']} | {g
 print(f"[browser] os={profile['os']} window={profile['window']}")
 
 with Camoufox(
-    headless="virtual",
-    # headless=False,
+    # headless="virtual",
+    headless=False,
     os=profile['os'],
     window=profile['window'],
     geoip=geo['ip'],
