@@ -1,4 +1,5 @@
 import os, json, time, random, requests, argparse, platform, uuid, socket, sys, itertools, threading, shutil, glob
+sys.stdout.reconfigure(encoding='utf-8')
 os.environ['CAMOUFOX_NO_UPDATE'] = '1'
 
 # ── clean leftover browser profiles + artifacts from previous sessions ──
