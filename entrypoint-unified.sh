@@ -57,7 +57,6 @@ nordvpn set tray off
 nordvpn set ipv6 off
 nordvpn whitelist add port 22
 nordvpn whitelist add port 6080
-nordvpn set dns 103.86.96.100 103.86.99.100
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 
