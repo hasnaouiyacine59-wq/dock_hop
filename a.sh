@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "sleep"
+sleep 30
 check_account() {
     nordvpn account 2>&1 | grep -q "Account created:"
 }
