@@ -1,14 +1,12 @@
 import json
 import subprocess
 import re
-
-
-import json
-import subprocess
-import re
 import base64
 import time
 import os
+
+if os.path.exists("ok"):
+    os.remove("ok")
 from camoufox.sync_api import Camoufox
 from browserforge.fingerprints import Screen
 
@@ -177,6 +175,7 @@ with Camoufox(
             
             if callback_result.returncode == 0:
                 print("✓ NordVPN CLI login successful!")
+                open("ok", "w").close()
             else:
                 print("✗ NordVPN CLI login failed")
         else:
