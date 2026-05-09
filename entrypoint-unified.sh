@@ -44,11 +44,11 @@ sleep 3
 
 nordvpn set killswitch off || true
 nordvpn whitelist add subnet 172.0.0.0/8 || true
-nordvpn set technology openvpn
-nordvpn set protocol UDP
-nordvpn set obfuscate on
+# nordvpn set technology openvpn
+# nordvpn set protocol UDP
+# nordvpn set obfuscate on
 
-nordvpn set threatprotectionlite on
+# nordvpn set threatprotectionlite on
 nordvpn set dns on
 nordvpn set notify off
 nordvpn set tray off
