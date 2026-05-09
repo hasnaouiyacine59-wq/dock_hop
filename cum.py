@@ -486,161 +486,161 @@ with Camoufox(
     lik()
 
     # ── load URL_2 and analyse ──
-    print(f"\n🌐  Navigating to {URL_2} ...")
-    page.goto(URL_2, wait_until='networkidle', timeout=60000)
-    print(f"✅  {page.title()} ({page.url})")
+    # print(f"\n🌐  Navigating to {URL_2} ...")
+    # page.goto(URL_2, wait_until='networkidle', timeout=60000)
+    # print(f"✅  {page.title()} ({page.url})")
 
-    # ── find all iframes ──
-    iframes = page.query_selector_all('iframe')
-    print(f"[iframe] {len(iframes)} found: " + " | ".join(
-        (fr.get_attribute('name') or fr.get_attribute('id') or f'#{i}')
-        for i, fr in enumerate(iframes)
-    ))
+    # # ── find all iframes ──
+    # iframes = page.query_selector_all('iframe')
+    # print(f"[iframe] {len(iframes)} found: " + " | ".join(
+    #     (fr.get_attribute('name') or fr.get_attribute('id') or f'#{i}')
+    #     for i, fr in enumerate(iframes)
+    # ))
 
-    # ── collect iframe-0 attrs + alts for report ──
-    if iframes:
-        fr = iframes[0]
-        iframe0_attrs = [v for a in ('src','id','name','alt','title','class') if (v := fr.get_attribute(a))]
-        session_report['iframe0_attrs'] = iframe0_attrs
-        try:
-            cf = fr.content_frame()
-            if cf:
-                cf.wait_for_load_state('domcontentloaded', timeout=15000)
-                seen = set()
-                unique_alts = [alt for el in cf.query_selector_all('img')
-                               if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
-                if unique_alts:
-                    print(f"[ad]     {' • '.join(unique_alts)}")
-                session_report['iframe0_alts'] = unique_alts
-        except Exception as e:
-            print(f"[iframe] ⚠️  iframe-0 read error: {e}")
-    else:
-        print("[iframe] ⚠️  no iframes found")
+    # # ── collect iframe-0 attrs + alts for report ──
+    # if iframes:
+    #     fr = iframes[0]
+    #     iframe0_attrs = [v for a in ('src','id','name','alt','title','class') if (v := fr.get_attribute(a))]
+    #     session_report['iframe0_attrs'] = iframe0_attrs
+    #     try:
+    #         cf = fr.content_frame()
+    #         if cf:
+    #             cf.wait_for_load_state('domcontentloaded', timeout=15000)
+    #             seen = set()
+    #             unique_alts = [alt for el in cf.query_selector_all('img')
+    #                            if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
+    #             if unique_alts:
+    #                 print(f"[ad]     {' • '.join(unique_alts)}")
+    #             session_report['iframe0_alts'] = unique_alts
+    #     except Exception as e:
+    #         print(f"[iframe] ⚠️  iframe-0 read error: {e}")
+    # else:
+    #     print("[iframe] ⚠️  no iframes found")
 
-    def read_iframes():
-        """Collect ad alts from every iframe; return compact string."""
-        parts = []
-        try:
-            for i, fr in enumerate(page.query_selector_all('iframe')):
-                try:
-                    cf = fr.content_frame()
-                    if not cf:
-                        continue
-                    cf.wait_for_load_state('domcontentloaded', timeout=10000)
-                    seen = set()
-                    alts = [alt for el in cf.query_selector_all('img')
-                            if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
-                    if alts:
-                        parts.append(f"place {i+1}: {' • '.join(alts)}")
-                        session_report['titles'].extend(alts)
-                except Exception:
-                    pass
-        except Exception:
-            pass
-        return '  '.join(parts)
+    # def read_iframes():
+    #     """Collect ad alts from every iframe; return compact string."""
+    #     parts = []
+    #     try:
+    #         for i, fr in enumerate(page.query_selector_all('iframe')):
+    #             try:
+    #                 cf = fr.content_frame()
+    #                 if not cf:
+    #                     continue
+    #                 cf.wait_for_load_state('domcontentloaded', timeout=10000)
+    #                 seen = set()
+    #                 alts = [alt for el in cf.query_selector_all('img')
+    #                         if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
+    #                 if alts:
+    #                     parts.append(f"place {i+1}: {' • '.join(alts)}")
+    #                     session_report['titles'].extend(alts)
+    #             except Exception:
+    #                 pass
+    #     except Exception:
+    #         pass
+    #     return '  '.join(parts)
 
-    def human_click(el):
-        box = el.bounding_box()
-        if not box:
-            el.click()
-            return
-        tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
-        ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
-        sx = tx + random.uniform(-120, 120)
-        sy = ty + random.uniform(-80, 80)
-        page.mouse.move(sx, sy, steps=random.randint(5, 12))
-        time.sleep(random.uniform(0.05, 0.15))
-        mx = (sx + tx) / 2 + random.uniform(-40, 40)
-        my = (sy + ty) / 2 + random.uniform(-40, 40)
-        page.mouse.move(mx, my, steps=random.randint(8, 18))
-        time.sleep(random.uniform(0.05, 0.12))
-        page.mouse.move(tx, ty, steps=random.randint(6, 14))
-        time.sleep(random.uniform(0.08, 0.25))
-        page.mouse.click(tx, ty)
+    # def human_click(el):
+    #     box = el.bounding_box()
+    #     if not box:
+    #         el.click()
+    #         return
+    #     tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
+    #     ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
+    #     sx = tx + random.uniform(-120, 120)
+    #     sy = ty + random.uniform(-80, 80)
+    #     page.mouse.move(sx, sy, steps=random.randint(5, 12))
+    #     time.sleep(random.uniform(0.05, 0.15))
+    #     mx = (sx + tx) / 2 + random.uniform(-40, 40)
+    #     my = (sy + ty) / 2 + random.uniform(-40, 40)
+    #     page.mouse.move(mx, my, steps=random.randint(8, 18))
+    #     time.sleep(random.uniform(0.05, 0.12))
+    #     page.mouse.move(tx, ty, steps=random.randint(6, 14))
+    #     time.sleep(random.uniform(0.08, 0.25))
+    #     page.mouse.click(tx, ty)
 
-    # ── nav links to randomly click ──
-    NAV_HREFS = ['/', '/', '/gainers']
-    # NAV_HREFS = ['/', '/', '/gainers', '/losers', '/watchlist']
-    random.shuffle(NAV_HREFS)
+    # # ── nav links to randomly click ──
+    # NAV_HREFS = ['/', '/', '/gainers']
+    # # NAV_HREFS = ['/', '/', '/gainers', '/losers', '/watchlist']
+    # random.shuffle(NAV_HREFS)
 
-    for href in NAV_HREFS:
-        time.sleep(random.uniform(1.5, 4.0))
-        try:
-            el = page.query_selector(f'a[href="{href}"]')
-            if not el:
-                print(f"⚠️  Could not find link href={href}")
-                continue
-            text = (el.inner_text() or '').strip()[:40]
-            human_click(el)
-            try:
-                page.wait_for_load_state('networkidle', timeout=10000)
-            except Exception:
-                page.wait_for_load_state('domcontentloaded', timeout=10000)
-            ads = read_iframes()
-            print(f"[nav] → '{text}' ({href})  [ad] {ads}")
+    # for href in NAV_HREFS:
+    #     time.sleep(random.uniform(1.5, 4.0))
+    #     try:
+    #         el = page.query_selector(f'a[href="{href}"]')
+    #         if not el:
+    #             print(f"⚠️  Could not find link href={href}")
+    #             continue
+    #         text = (el.inner_text() or '').strip()[:40]
+    #         human_click(el)
+    #         try:
+    #             page.wait_for_load_state('networkidle', timeout=10000)
+    #         except Exception:
+    #             page.wait_for_load_state('domcontentloaded', timeout=10000)
+    #         ads = read_iframes()
+    #         print(f"[nav] → '{text}' ({href})  [ad] {ads}")
 
-            # ── after Gainers: click a random pair link ──
-            if href == '/gainers':
-                time.sleep(random.uniform(1.5, 3.0))
-                pair_links = page.query_selector_all('a[href^="/pair/"]')
-                if pair_links:
-                    pick = random.choice(pair_links)
-                    pair_text = (pick.inner_text() or '').strip()[:40].replace('\n', ' ')
-                    human_click(pick)
-                    page.wait_for_load_state('networkidle', timeout=20000)
-                    ads = read_iframes()
-                    print(f"[nav] → pair '{pair_text}'  [ad] {ads}")
-                    time.sleep(random.uniform(6.5, 8.0))
-                else:
-                    print("[nav] ⚠️  no pair links on /gainers")
+    #         # ── after Gainers: click a random pair link ──
+    #         if href == '/gainers':
+    #             time.sleep(random.uniform(1.5, 3.0))
+    #             pair_links = page.query_selector_all('a[href^="/pair/"]')
+    #             if pair_links:
+    #                 pick = random.choice(pair_links)
+    #                 pair_text = (pick.inner_text() or '').strip()[:40].replace('\n', ' ')
+    #                 human_click(pick)
+    #                 page.wait_for_load_state('networkidle', timeout=20000)
+    #                 ads = read_iframes()
+    #                 print(f"[nav] → pair '{pair_text}'  [ad] {ads}")
+    #                 time.sleep(random.uniform(6.5, 8.0))
+    #             else:
+    #                 print("[nav] ⚠️  no pair links on /gainers")
 
-            # ── after Losers: click random pair, then logo ──
-            if href == '/losers':
-                time.sleep(random.uniform(1.5, 3.0))
-                pair_links = page.query_selector_all('a[href^="/pair/"]')
-                if pair_links:
-                    pick = random.choice(pair_links)
-                    pair_text = (pick.inner_text() or '').strip()[:40].replace('\n', ' ')
-                    human_click(pick)
-                    page.wait_for_load_state('networkidle', timeout=20000)
-                    ads = read_iframes()
-                    print(f"[nav] → pair '{pair_text}'  [ad] {ads}")
-                else:
-                    print("[nav] ⚠️  no pair links on /losers")
-                time.sleep(random.uniform(6.5, 8.0))
-                logo = page.query_selector('a.text-accent.font-bold.text-lg.tracking-tight.shrink-0[href="/"]')
-                if logo:
-                    human_click(logo)
-                    page.wait_for_load_state('networkidle', timeout=20000)
-                    ads = read_iframes()
-                    print(f"[nav] → home logo  [ad] {ads}")
-                else:
-                    print("[nav] ⚠️  logo not found")
-                time.sleep(random.uniform(4.5, 8.0))
+    #         # ── after Losers: click random pair, then logo ──
+    #         if href == '/losers':
+    #             time.sleep(random.uniform(1.5, 3.0))
+    #             pair_links = page.query_selector_all('a[href^="/pair/"]')
+    #             if pair_links:
+    #                 pick = random.choice(pair_links)
+    #                 pair_text = (pick.inner_text() or '').strip()[:40].replace('\n', ' ')
+    #                 human_click(pick)
+    #                 page.wait_for_load_state('networkidle', timeout=20000)
+    #                 ads = read_iframes()
+    #                 print(f"[nav] → pair '{pair_text}'  [ad] {ads}")
+    #             else:
+    #                 print("[nav] ⚠️  no pair links on /losers")
+    #             time.sleep(random.uniform(6.5, 8.0))
+    #             logo = page.query_selector('a.text-accent.font-bold.text-lg.tracking-tight.shrink-0[href="/"]')
+    #             if logo:
+    #                 human_click(logo)
+    #                 page.wait_for_load_state('networkidle', timeout=20000)
+    #                 ads = read_iframes()
+    #                 print(f"[nav] → home logo  [ad] {ads}")
+    #             else:
+    #                 print("[nav] ⚠️  logo not found")
+    #             time.sleep(random.uniform(4.5, 8.0))
 
-        except Exception as e:
-            print(f"[nav] ⚠️  {href}: {e}")
+    #     except Exception as e:
+    #         print(f"[nav] ⚠️  {href}: {e}")
 
-    print("[done] analysis complete")
+    # print("[done] analysis complete")
 
-    # ── re-read iframes after analysis (collect data only, compact print) ──
-    for i, fr in enumerate(page.query_selector_all('iframe')):
-        try:
-            cf = fr.content_frame()
-            if not cf:
-                continue
-            cf.wait_for_load_state('domcontentloaded', timeout=10000)
-            text = cf.inner_text('body').strip()[:300].replace('\n', ' ')
-            seen = set()
-            alts = [alt for el in cf.query_selector_all('img')
-                    if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
-            if alts:
-                print(f"[ad]  fr{i}: {' • '.join(alts)}")
-            session_report['iframes'].append({'index': i, 'text': text, 'alts': alts})
-        except Exception as e:
-            print(f"[ad]  fr{i} ⚠️  {e}")
+    # # ── re-read iframes after analysis (collect data only, compact print) ──
+    # for i, fr in enumerate(page.query_selector_all('iframe')):
+    #     try:
+    #         cf = fr.content_frame()
+    #         if not cf:
+    #             continue
+    #         cf.wait_for_load_state('domcontentloaded', timeout=10000)
+    #         text = cf.inner_text('body').strip()[:300].replace('\n', ' ')
+    #         seen = set()
+    #         alts = [alt for el in cf.query_selector_all('img')
+    #                 if (alt := (el.get_attribute('alt') or '').strip()) and alt not in seen and not seen.add(alt)]
+    #         if alts:
+    #             print(f"[ad]  fr{i}: {' • '.join(alts)}")
+    #         session_report['iframes'].append({'index': i, 'text': text, 'alts': alts})
+    #     except Exception as e:
+    #         print(f"[ad]  fr{i} ⚠️  {e}")
 
-    # ── send report ──
+    # # ── send report ──
     print(f"[report] titles={len(session_report['titles'])} iframes={len(session_report['iframes'])} ip={session_report['ip']} cc={session_report['cc']}")
     if REPORT_URL:
         try:
