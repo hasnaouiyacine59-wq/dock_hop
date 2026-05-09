@@ -7,9 +7,9 @@ check_account() {
 
 if ! check_account; then
     python3 /dock_hop/camoufox_browser.py
-    check_account || exit 1
+    [ -f ok ] || exit 1
+    rm ok
 fi
-[ -f ok ] && rm ok
 while true; do
     timeout 400 python3 /dock_hop/cum.py
 done
