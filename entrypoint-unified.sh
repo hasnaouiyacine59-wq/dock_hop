@@ -47,6 +47,8 @@ nordvpn whitelist add subnet 172.0.0.0/8 || true
 # nordvpn set technology openvpn
 # nordvpn set protocol UDP
 # nordvpn set obfuscate on
+nordvpn set technology NORDWHISPER
+
 
 # nordvpn set threatprotectionlite on
 nordvpn set dns on
