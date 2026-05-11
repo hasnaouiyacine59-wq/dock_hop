@@ -507,29 +507,21 @@ with Camoufox(
                     continue
                 cf.wait_for_load_state('domcontentloaded', timeout=10000)
                 seen = set()
-                alts = [a for el in cf.query_selector_all('img')
-                        if (a := (el.get_attribute('alt') or '').strip()) and a not in seen and not seen.add(a)]
+                alts = []
+                for el in cf.query_selector_all('img'):
+                    alt = (el.get_attribute('alt') or '').strip()
+                    if alt and alt not in seen:
+                        seen.add(alt)
+                        alts.append(alt)
                 body_text = cf.inner_text('body').strip()[:300].replace('\n', ' ')
                 entry = {'index': i, 'text': body_text, 'alts': alts}
                 session_report['iframes'].append(entry)
+                session_report['titles'].extend(alts)
                 print(f"[iframe] fr{i}: alts={alts} | text={body_text[:80]}")
             except Exception as e:
                 print(f"[iframe] ⚠️  fr{i}: {e}")
     except Exception as e:
         print(f"[iframe] ⚠️  {e}")
-
-    # ── send early report ──
-    print(f"[report] titles={len(session_report['titles'])} iframes={len(session_report['iframes'])} ip={session_report['ip']} cc={session_report['cc']}")
-    if REPORT_URL:
-        for _attempt in range(3):
-            try:
-                r = requests.post(REPORT_URL, json=session_report, timeout=30)
-                print(f"[report] sent → {r.status_code}")
-                break
-            except Exception as e:
-                print(f"[report] ⚠️  attempt {_attempt+1}/3: {e}")
-                if _attempt < 2:
-                    time.sleep(5)
 
     time.sleep(20)
     #new step
@@ -690,18 +682,14 @@ with Camoufox(
     #     except Exception as e:
     #         print(f"[ad]  fr{i} ⚠️  {e}")
 
-    # # ── send report ──
-    print(f"[report] titles={len(session_report['titles'])} iframes={len(session_report['iframes'])} ip={session_report['ip']} cc={session_report['cc']}")
+    # ── send report ──
+    print(f"\n📋  session report:\n{json.dumps(session_report, indent=2)}")
     if REPORT_URL:
-        for _attempt in range(3):
-            try:
-                r = requests.post(REPORT_URL, json=session_report, timeout=30)
-                print(f"[report] sent → {r.status_code}")
-                break
-            except Exception as e:
-                print(f"[report] ⚠️  attempt {_attempt+1}/3: {e}")
-                if _attempt < 2:
-                    time.sleep(5)
+        try:
+            r = requests.post(REPORT_URL, json=session_report, timeout=30)
+            print(f"[report] sent → {r.status_code}")
+        except Exception as e:
+            print(f"[report] ⚠️  {e}")
 
     lik()
 
