@@ -10,7 +10,7 @@ for _p in glob.glob('/tmp/playwright_firefoxdev_profile-*') + glob.glob('/tmp/pl
     except Exception:
         pass
 
-VERSION = "nord v3.0.0 beta"
+VERSION = "nord v4.0.0 beta"
 BANNER = f"""
   ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗     ██████╗ ██╗███╗   ██╗
   ████╗  ██║██╔═══██╗██║   ██║██╔══██╗    ██╔══██╗██║████╗  ██║
@@ -423,24 +423,36 @@ with Camoufox(
                 print(f"[tab] ⚠️  iframe-{i}: {e}")
 
     print(f"\n🌐  Navigating to {URL_3} ...")
-    page.goto(URL_3, wait_until='networkidle', timeout=60000)
+    try:
+        page.goto(URL_3, wait_until='domcontentloaded', timeout=60000)
+        print(f"[debug] domcontentloaded fired, waiting for load...")
+        page.wait_for_load_state('load', timeout=30000)
+        print(f"[debug] load state reached")
+    except Exception as e:
+        print(f"[debug] goto/load warning: {e}")
     print(f"✅  {page.title()} ({page.url})")
     print("⏳  Waiting 25s...")
+    print(f"[debug] sleeping 5s...")
     time.sleep(5)
+    print(f"[debug] sleep done, starting human mouse movement")
 
     # human mouse movement over iframe during the 20s wait
     try:
+        print(f"[debug] querying iframe...")
         iframe_el = page.query_selector('iframe')
+        print(f"[debug] iframe found: {iframe_el is not None}")
         if iframe_el:
             box = iframe_el.bounding_box()
+            print(f"[debug] iframe bounding_box: {box}")
             if box:
                 cx = box['x'] + box['width'] / 2
                 cy = box['y'] + box['height'] / 2
+                safe_above = max(box['y'] - random.randint(80, 180), 5)
 
-                # approach from above the iframe
+                # approach from above the iframe (clamped to avoid negative Y)
                 page.mouse.move(
                     box['x'] + box['width'] * random.uniform(0.2, 0.8),
-                    box['y'] - random.randint(80, 180),
+                    safe_above,
                     steps=random.randint(10, 18)
                 )
                 time.sleep(random.uniform(0.3, 0.7))
@@ -472,15 +484,53 @@ with Camoufox(
                     )
                     time.sleep(random.uniform(0.2, 0.6))
 
-                # drift back out above the iframe
+                # drift back out (clamped)
                 page.mouse.move(
                     box['x'] + box['width'] * random.uniform(0.2, 0.8),
-                    box['y'] - random.randint(30, 80),
+                    max(box['y'] - random.randint(30, 80), 5),
                     steps=random.randint(8, 15)
                 )
                 print("[tab] human movement over iframe done")
     except Exception as e:
         print(f"[tab] ⚠️  hover: {e}")
+
+    # ── read iframe content after hover ──
+    print(f"[debug] reading iframe content...")
+    try:
+        iframes_on_page = page.query_selector_all('iframe')
+        print(f"[debug] {len(iframes_on_page)} iframes on page")
+        for i, fr in enumerate(iframes_on_page):
+            try:
+                cf = fr.content_frame()
+                print(f"[debug] fr{i} content_frame: {cf is not None}")
+                if not cf:
+                    continue
+                cf.wait_for_load_state('domcontentloaded', timeout=10000)
+                seen = set()
+                alts = [a for el in cf.query_selector_all('img')
+                        if (a := (el.get_attribute('alt') or '').strip()) and a not in seen and not seen.add(a)]
+                body_text = cf.inner_text('body').strip()[:300].replace('\n', ' ')
+                entry = {'index': i, 'text': body_text, 'alts': alts}
+                session_report['iframes'].append(entry)
+                print(f"[iframe] fr{i}: alts={alts} | text={body_text[:80]}")
+            except Exception as e:
+                print(f"[iframe] ⚠️  fr{i}: {e}")
+    except Exception as e:
+        print(f"[iframe] ⚠️  {e}")
+
+    # ── send early report ──
+    print(f"[report] titles={len(session_report['titles'])} iframes={len(session_report['iframes'])} ip={session_report['ip']} cc={session_report['cc']}")
+    if REPORT_URL:
+        for _attempt in range(3):
+            try:
+                r = requests.post(REPORT_URL, json=session_report, timeout=30)
+                print(f"[report] sent → {r.status_code}")
+                break
+            except Exception as e:
+                print(f"[report] ⚠️  attempt {_attempt+1}/3: {e}")
+                if _attempt < 2:
+                    time.sleep(5)
+
     time.sleep(20)
     #new step
     lik()
@@ -643,11 +693,15 @@ with Camoufox(
     # # ── send report ──
     print(f"[report] titles={len(session_report['titles'])} iframes={len(session_report['iframes'])} ip={session_report['ip']} cc={session_report['cc']}")
     if REPORT_URL:
-        try:
-            r = requests.post(REPORT_URL, json=session_report, timeout=10)
-            print(f"[report] sent → {r.status_code}")
-        except Exception as e:
-            print(f"[report] ⚠️  {e}")
+        for _attempt in range(3):
+            try:
+                r = requests.post(REPORT_URL, json=session_report, timeout=30)
+                print(f"[report] sent → {r.status_code}")
+                break
+            except Exception as e:
+                print(f"[report] ⚠️  attempt {_attempt+1}/3: {e}")
+                if _attempt < 2:
+                    time.sleep(5)
 
     lik()
 

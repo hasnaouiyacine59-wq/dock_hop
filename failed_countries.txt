@@ -25,3 +25,8 @@ Cayman_Islands
 Costa_Rica
 Georgia
 Papua_New_Guinea
+Liechtenstein
+Switzerland
+Cayman_Islands
+Cambodia
+Latvia
