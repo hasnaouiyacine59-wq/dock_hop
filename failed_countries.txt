@@ -207,3 +207,6 @@ Turkey
 Croatia
 Romania
 Croatia
+Armenia
+Israel
+Liechtenstein

@@ -10,7 +10,7 @@ for _p in glob.glob('/tmp/playwright_firefoxdev_profile-*') + glob.glob('/tmp/pl
     except Exception:
         pass
 
-VERSION = "nord v6.0.0 beta"
+VERSION = "nord v 7.0.0 beta"
 BANNER = f"""
   ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗     ██████╗ ██╗███╗   ██╗
   ████╗  ██║██╔═══██╗██║   ██║██╔══██╗    ██╔══██╗██║████╗  ██║
@@ -349,8 +349,8 @@ print(f"[geo]     {geo['ip']} [{geo['cc']}] {geo['country']}, {geo['city']} | {g
 print(f"[browser] os={profile['os']} window={profile['window']}")
 
 with Camoufox(
-    headless="virtual",
-    # headless=False,
+    # headless="virtual",
+    headless=False,
     os=profile['os'],
     window=profile['window'],
     geoip=geo['ip'],
