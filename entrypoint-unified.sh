@@ -43,7 +43,6 @@ rm -f /run/nordvpn/nordvpnd.sock /run/nordvpnd.pid /run/nordvpnd.sock
 sleep 3
 
 nordvpn set killswitch off || true
-nordvpn whitelist add subnet 172.0.0.0/8 || true
 # nordvpn set technology openvpn
 # nordvpn set protocol UDP
 # nordvpn set obfuscate on
@@ -59,6 +58,8 @@ nordvpn set tray off
 nordvpn set ipv6 off
 nordvpn whitelist add port 22
 nordvpn whitelist add port 6080
+nordvpn whitelist add subnet 172.0.0.0/8 || true
+
 
 echo "noVNC ready at http://localhost:6080/vnc.html"
 

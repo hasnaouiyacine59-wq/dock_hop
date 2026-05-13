@@ -4,6 +4,7 @@ import re
 import base64
 import time
 import os
+import random
 
 if os.path.exists("ok"):
     os.remove("ok")
@@ -14,19 +15,15 @@ from browserforge.fingerprints import Screen
 os.environ['DISPLAY'] = ':1'
 
 COOKIES_FILE = "cookies.json"
-# AA = "Z2VsZW5zbGF1cmVuQGdtYWlsLmNvbQ=="
-# B = "MTUxMlNhbW1pZTEwIQ=="
-
-AA = "cGF0cmlja19rZXJyQGxpdmUuY29t"
-B = "UGRrNzUwNTcyOSE="
-# AA = "b29sbGVyQGhvdG1haWwuY29t"
-# B = "T29sbGVyODIh"
-# AA = "bnNnXzI1QHlhaG9vLmNvbQ=="
-# B = "TGlvbjAwMDAh"
-# AA = "bmljb2xhc3phazIyQGdtYWlsLmNvbQ=="
-# B = "ZHppdWJhczEx"
-# AA = "bmljb2xhc3phazIyQGdtYWlsLmNvbQ=="
-# B = "ZHppdWJhczEx"
+CREDENTIALS = [
+    {"AA": "Z2VsZW5zbGF1cmVuQGdtYWlsLmNvbQ==", "B": "MTUxMlNhbW1pZTEwIQ=="},
+    {"AA": "cGF0cmlja19rZXJyQGxpdmUuY29t",     "B": "UGRrNzUwNTcyOSE="},
+    {"AA": "b29sbGVyQGhvdG1haWwuY29t",          "B": "T29sbGVyODIh"},
+    {"AA": "bnNnXzI1QHlhaG9vLmNvbQ==",          "B": "TGlvbjAwMDAh"},
+    {"AA": "bmljb2xhc3phazIyQGdtYWlsLmNvbQ==",  "B": "ZHppdWJhczEx"},
+]
+cred = random.choice(CREDENTIALS)
+AA, B = cred["AA"], cred["B"]
 print("[DEBUG] Starting script...")
 print(f"[DEBUG] DISPLAY={os.environ.get('DISPLAY')}")
 

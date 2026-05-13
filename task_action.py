@@ -1,4 +1,4 @@
-import time, random, os, cv2, numpy as np
+import time, random, os, re, cv2, numpy as np
 
 
 def _human_scroll(page):
@@ -55,17 +55,19 @@ def journy_func(page):
     """Task for 'Just a moment...' title (Cloudflare challenge)."""
     print("   [journy] waiting 10s...")
     time.sleep(10)
-    # # dump all elements
-    # elements = page.query_selector_all('*')
-    # print(f"   [journy] {len(elements)} elements on page")
-    # for el in elements[:30]:
-    #     try:
-    #         tag = el.evaluate("e => e.tagName")
-    #         txt = (el.inner_text() or '').strip()[:60].replace('\n', ' ')
-    #         print(f"      <{tag}> {txt}")
-    #     except Exception:
-    #         pass
     _find_and_click_ok(page)
+    # wait for Cloudflare to resolve and title to change
+    print("   [journy] waiting for redirect after ok click...")
+    for _ in range(30):
+        try:
+            t = page.title()
+            if t and "just a moment" not in t.lower() and "nur einen moment" not in t.lower() and "..." not in t.lower():
+                print(f"   [journy] ✅ resolved → {t}")
+                return False  # return False so caller keeps looping to pick up new title
+        except Exception:
+            pass
+        time.sleep(1)
+    print("   [journy] ⚠️  timed out waiting for resolution")
 
 
 def error_502(page):
@@ -163,23 +165,114 @@ def _hostinger_horizons(page):
 
 
 # ── title → task mapping ──
+def bc_func(page):
+    bc_game_func(page)
+    """Task for 'BC' title."""
+    pass  # TODO: add code here
+
+
+def bc_game_func(page):
+    """Task for 'BC.Game' title — wait for full load, dump all elements to file."""
+    print(f"   [bc.game] title: {page.title()} | url: {page.url}")
+    try:
+        page.wait_for_load_state('networkidle', timeout=30000)
+    except Exception:
+        pass
+    time.sleep(3)
+    elements = page.query_selector_all('*')
+    print(f"   [bc.game] {len(elements)} elements on page")
+    dump_path = f"bc_game_dump_{int(time.time())}.txt"
+    with open(dump_path, 'w') as f:
+        f.write(f"title: {page.title()} | url: {page.url}\n\n")
+        for el in elements:
+            try:
+                tag = el.evaluate("e => e.tagName")
+                txt = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
+                f.write(f"<{tag}> {txt}\n")
+            except Exception:
+                pass
+    print(f"   [bc.game] dump saved → {dump_path}")
+    # input('dddo')
+
+
+def flirtbate(page):
+    """Task for Flirtbate title — dismiss age gate, fill email, submit."""
+    # 1. Age gate: click "I Agree"
+    try:
+        page.wait_for_selector('button:has-text("I Agree")', timeout=10000)
+        page.click('button:has-text("I Agree")')
+        print("   [flirtbate] ✅ age gate dismissed")
+        time.sleep(random.uniform(1, 2))
+    except Exception as e:
+        print(f"   [flirtbate] ⚠️  age gate not found: {e}")
+
+    # 2. Fill email and submit
+    lock_com(page)
+
+
 TASKS = {
+    "bc.game": bc_game_func,
+    "bc": bc_func,
     "statewins": statewins,
+    "flirtbate": flirtbate,
     "error 502": error_502,
     "eloniai": lambda page: _human_scroll(page),
     "just a moment": journy_func,
+    "nur einen moment": journy_func,
     "...": journy_func,
     "lock.com": lock_com,
     "crypto payment gateway": crypto_gateway,
     "hostinger horizons": lambda page: _hostinger_horizons(page),
 }
 
+def landingbc(page):
+    """Task for landingbc.com — click Join Now then dump."""
+    try:
+        page.wait_for_selector('button:has-text("Join Now"), a:has-text("Join Now")', timeout=15000)
+        page.click('button:has-text("Join Now"), a:has-text("Join Now")')
+        print("   [landingbc] ✅ Join Now clicked")
+        time.sleep(random.uniform(2, 4))
+    except Exception as e:
+        print(f"   [landingbc] ⚠️  Join Now not found: {e}")
+    _dump_page(page)
 
-def run(title: str, page):
-    """Run the matching task for the given title (case-insensitive substring match)."""
-    title_lower = title.lower()
-    for key, fn in TASKS.items():
-        if key in title_lower:
-            fn(page)
-            return True
+
+URL_TASKS = {
+    "landingbc.com": landingbc,
+}
+
+
+def _dump_page(page):
+    """Dump all elements to a file named by sanitized title/url."""
+    try:
+        page.wait_for_load_state('networkidle', timeout=15000)
+    except Exception:
+        pass
+    slug = re.sub(r'[^a-z0-9]+', '_', (page.title() or page.url).lower())[:60]
+    dump_path = f"dump_{slug}_{int(time.time())}.txt"
+    elements = page.query_selector_all('*')
+    with open(dump_path, 'w') as f:
+        f.write(f"title: {page.title()} | url: {page.url}\n\n")
+        for el in elements:
+            try:
+                tag = el.evaluate("e => e.tagName")
+                txt = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
+                f.write(f"<{tag}> {txt}\n")
+            except Exception:
+                pass
+    print(f"   [dump] no match — saved → {dump_path}")
+
+def run(title: str, url: str, page):
+    """Match on title first, fallback to URL if title is empty. Dump on no match."""
+    if title:
+        for key, fn in TASKS.items():
+            if key in title.lower():
+                fn(page)
+                return True
+    else:
+        for key, fn in URL_TASKS.items():
+            if key in url:
+                fn(page)
+                return True
+    _dump_page(page)
     return False

@@ -10,7 +10,7 @@ for _p in glob.glob('/tmp/playwright_firefoxdev_profile-*') + glob.glob('/tmp/pl
     except Exception:
         pass
 
-VERSION = "nord v5.0.0 beta"
+VERSION = "nord v6.0.0 beta"
 BANNER = f"""
   ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗     ██████╗ ██╗███╗   ██╗
   ████╗  ██║██╔═══██╗██║   ██║██╔══██╗    ██╔══██╗██║████╗  ██║
@@ -127,7 +127,18 @@ def nordvpn_connect(country=None):
     out = result.stdout + result.stderr
     if "couldn't connect" in out or "Please check your internet" in out:
         return False
-    return True
+    # poll status until Connected or timeout
+    for _ in range(2):
+        try:
+            status = subprocess.check_output(['nordvpn', 'status'], text=True)
+            if 'Connected' in status:
+                return True
+            if "couldn't connect" in status or 'Disconnected' in status:
+                return False
+        except Exception:
+            pass
+        time.sleep(1)
+    return False
 
 def nordvpn_disconnect():
     subprocess.run(['nordvpn', 'disconnect'], check=False, capture_output=True)
@@ -170,7 +181,6 @@ def rotate_nordvpn(current_ip=None, country=None):
     """Disconnect, reconnect (random or to country), wait for new IP."""
     print('[nordvpn] disconnecting...')
     nordvpn_disconnect()
-    fail_count = 0
     current_country = country
     while True:
         msg = f'[nordvpn] connecting{"  to " + current_country if current_country else " randomly"}...'
@@ -188,15 +198,11 @@ def rotate_nordvpn(current_ip=None, country=None):
         stop.set(); t.join()
         if ok:
             break
-        fail_count += 1
-        print(f'[nordvpn] ❌ connect failed ({fail_count}/3) for {current_country}')
-        if fail_count >= 3:
-            print(f'[nordvpn] 🔄 giving up on {current_country}, switching...')
-            _log_failed_country(current_country)
-            nordvpn_disconnect()
-            current_country = _next_country()
-            fail_count = 0
-            print(f'[nordvpn] 🌍 trying → {current_country}')
+        print(f'[nordvpn] ❌ connect failed for {current_country}, switching...')
+        _log_failed_country(current_country)
+        nordvpn_disconnect()
+        current_country = _next_country()
+        print(f'[nordvpn] 🌍 trying → {current_country}')
         time.sleep(5)
     new_ip = nordvpn_current_ip()
     if current_ip and new_ip == current_ip:
@@ -234,7 +240,8 @@ def get_approved_ip(country=None):
         if approved:
             print(f"[*] ✅ approved: {ip} → {resp}")
             return ip
-        print(f"[*] ❌ rejected: {ip} → {resp}, rotating...")
+        country = _next_country()
+        print(f"[*] ❌ rejected: {ip} → {resp}, switching country → {country}")
         ip = rotate_nordvpn(current_ip=ip, country=country)
 
 CC_LANG = {
@@ -371,6 +378,7 @@ with Camoufox(
 
     # ── visit URL_3 first, then switch to URL_2 in the same tab ──
     def lik():
+        print('── visit URL_3 first, then switch to URL_2 in the same tab ──')
         iframes = page.query_selector_all('iframe')
         for i, fr in enumerate(iframes):
             try:
@@ -388,27 +396,28 @@ with Camoufox(
                     page.mouse.click(tx, ty)
                 new_tab = new_page_info.value
                 new_tab.bring_to_front()
-                new_tab.wait_for_load_state('domcontentloaded', timeout=20000)
+                new_tab.wait_for_load_state('load', timeout=20000)
                 print(f"[tab] new tab opened")
-                seen_titles = set()
+                # track title changes through redirections — exit when idle 15s
                 last_title = None
-
-                # track title changes through redirections
-                for _ in range(20):
+                idle = 0
+                while idle < 15:
                     try:
                         title = new_tab.title()
-                        if title and title != last_title:
-                            if 'click' in title.lower():
-                                print(f"[tab] waiting... [{title}]")
-                            else:
-                                print(f"[tab] title: {title} | {new_tab.url}")
-                                if task_action.run(title, new_tab):
-                                    break
-                            last_title = title
+                        print(f"[tab] title: {repr(title)} | {new_tab.url}")
+                        key = title or new_tab.url
+                        if key and key != last_title:
+                            last_title = key
+                            idle = 0
+                            if task_action.run(title, new_tab.url, new_tab):
+                                break
+                        else:
+                            idle += 1
                     except Exception:
                         if new_tab.is_closed():
                             print("[tab] tab closed itself, exiting loop")
                             break
+                        idle += 1
                     time.sleep(1)
 
                 new_tab.close()
@@ -430,7 +439,10 @@ with Camoufox(
         print(f"[debug] load state reached")
     except Exception as e:
         print(f"[debug] goto/load warning: {e}")
-    print(f"✅  {page.title()} ({page.url})")
+    if page.is_closed():
+        print(f"[debug] page was closed during navigation to {URL_3}, skipping")
+    else:
+        print(f"✅  {page.title()} ({page.url})")
     print("⏳  Waiting 25s...")
     print(f"[debug] sleeping 5s...")
     time.sleep(5)
@@ -449,46 +461,32 @@ with Camoufox(
                 cy = box['y'] + box['height'] / 2
                 safe_above = max(box['y'] - random.randint(80, 180), 5)
 
-                # approach from above the iframe (clamped to avoid negative Y)
                 page.mouse.move(
                     box['x'] + box['width'] * random.uniform(0.2, 0.8),
-                    safe_above,
-                    steps=random.randint(10, 18)
+                    safe_above, steps=5
                 )
                 time.sleep(random.uniform(0.3, 0.7))
 
-                # drift across top edge
-                for _ in range(random.randint(2, 4)):
+                for _ in range(2):
                     page.mouse.move(
                         box['x'] + box['width'] * random.uniform(0.1, 0.9),
                         box['y'] + box['height'] * random.uniform(0.05, 0.2),
-                        steps=random.randint(10, 20)
+                        steps=5
                     )
-                    time.sleep(random.uniform(0.3, 0.8))
+                    time.sleep(random.uniform(0.3, 0.6))
 
-                # wander into the middle area with pauses
-                for _ in range(random.randint(3, 6)):
+                for _ in range(3):
                     page.mouse.move(
-                        box['x'] + box['width']  * random.uniform(0.15, 0.85),
+                        box['x'] + box['width'] * random.uniform(0.15, 0.85),
                         box['y'] + box['height'] * random.uniform(0.2, 0.75),
-                        steps=random.randint(12, 25)
+                        steps=5
                     )
-                    time.sleep(random.uniform(0.5, 1.5))
+                    time.sleep(random.uniform(0.3, 0.6))
 
-                # small jitter around center (like reading)
-                for _ in range(random.randint(4, 7)):
-                    page.mouse.move(
-                        cx + random.uniform(-40, 40),
-                        cy + random.uniform(-20, 20),
-                        steps=random.randint(5, 12)
-                    )
-                    time.sleep(random.uniform(0.2, 0.6))
-
-                # drift back out (clamped)
                 page.mouse.move(
                     box['x'] + box['width'] * random.uniform(0.2, 0.8),
                     max(box['y'] - random.randint(30, 80), 5),
-                    steps=random.randint(8, 15)
+                    steps=5
                 )
                 print("[tab] human movement over iframe done")
     except Exception as e:
@@ -691,5 +689,5 @@ with Camoufox(
         except Exception as e:
             print(f"[report] ⚠️  {e}")
 
-    lik()
+    # lik()
 

@@ -1,0 +1,572 @@
+title: Crypto payment gateway | Business solutions for accept crypto | url: https://apirone.com/?utm_source=AADS&utm_medium=Crypto_Ecom&utm_campaign=205672_2434924&utm_content=adaptive
+
+<HTML> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard Сrypto Pa
+<HEAD> Crypto payment gateway | Business solutions for accept crypto (function(m,e,t,r,
+<META> 
+<META> 
+<TITLE> Crypto payment gateway | Business solutions for accept crypto
+<SCRIPT> 
+<SCRIPT> (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(argument
+<SCRIPT> ym("95508320","init", {"accurateTrackBounce":true,"childIframe":true,"clickmap":
+<STYLE> @font-face{font-family:apricons;src:url(/_nuxt/apricons.CYzEuzPw.ttf) format("em
+<STYLE> .mt-16{margin-top:16px}.mb-16{margin-bottom:16px}.m-16{margin:16px 0}.mt-32{marg
+<STYLE> .cookies{background:#2f2e41;border:1px solid #cbced3;bottom:16px;-webkit-box-sha
+<STYLE> .header{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:fle
+<STYLE> .logo[data-v-6d00a2de]{height:2rem}.logo__part[data-v-6d00a2de]{fill:var(--prima
+<STYLE> .navbar{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:fle
+<STYLE> .banner{padding-top:48px}.banner__list{display:-webkit-box;display:-webkit-flex;
+<STYLE> .home-pricing{margin-bottom:140px;padding-top:130px}.home-pricing__button{margin
+<STYLE> .switch[data-v-b7e510c6]{display:inline-block;height:52px;position:relative;widt
+<STYLE> .ticker{margin-bottom:130px}.ticker__wrapper{border-radius:2rem;min-height:9rem;
+<STYLE> .ticker__amount>span .svg{height:1rem}
+<STYLE> .integrations-component .button-primary{text-align:center;width:210px}.integrati
+<STYLE> .advantages{height:455px;margin-bottom:130px;margin-top:130px}.advantages,.advan
+<STYLE> .cases{z-index:9}.cases__title{margin-bottom:10px}.cases__subtitle,.cases__title
+<STYLE> .easy-registration{padding-bottom:130px;padding-top:130px}.easy-registration h2,
+<STYLE> .social a{margin-left:8px}.social a:first-child{margin-left:0}.footer__mempool{c
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<SCRIPT> 
+<META> 
+<META> 
+<META> 
+<META> 
+<META> 
+<META> 
+<META> 
+<LINK> 
+<NOSCRIPT> <div><img src="https://mc.yandex.ru/watch/95508320" style="position:absolute; le
+<META> 
+<SCRIPT> {"title":"Apirone"}
+<SCRIPT> 
+<SCRIPT> 
+<LINK> 
+<META> 
+<META> 
+<META> 
+<META> 
+<META> 
+<META> 
+<LINK> 
+<SCRIPT> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<LINK> 
+<BODY> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard Сrypto Pa
+<DIV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard Сrypto Pa
+<DIV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard Сrypto Pa
+<DIV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard Сrypto Pa
+<DIV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard
+<HEADER> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard
+<DIV> 
+<A> 
+<DIV> 
+<DIV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us Dashboard
+<NAV> Pricing Solution API Docs Explorer Blog FAQ Roadmap About us
+<DIV> Pricing
+<A> Pricing
+<DIV> Solution
+<DIV> Solution
+<DIV> Solution
+<I> 
+<DIV> API Docs
+<A> API Docs
+<DIV> Explorer
+<A> Explorer
+<DIV> Blog
+<A> Blog
+<DIV> FAQ
+<A> FAQ
+<DIV> Roadmap
+<A> Roadmap
+<DIV> About us
+<A> About us
+<A> Dashboard
+<BUTTON> 
+<LABEL> 
+<INPUT> 
+<MAIN> Сrypto Payment gateway Isolated addresses and wallets  Your crypto funds are iso
+<SECTION> Сrypto Payment gateway Isolated addresses and wallets  Your crypto funds are iso
+<IMG> 
+<DIV> Сrypto Payment gateway Isolated addresses and wallets  Your crypto funds are iso
+<DIV> Сrypto Payment gateway Isolated addresses and wallets  Your crypto funds are iso
+<H1> Сrypto Payment gateway
+<UL> Isolated addresses and wallets  Your crypto funds are isolated from other custom
+<LI> Isolated addresses and wallets  Your crypto funds are isolated from other custom
+<SPAN> Isolated addresses and wallets
+<I> 
+<P> Your crypto funds are isolated from other customers. You receive and withdraw cr
+<LI> Effortless installation  Easy-to-use cryptocurrency processor with seamless inte
+<SPAN> Effortless installation
+<I> 
+<P> Easy-to-use cryptocurrency processor with seamless integration provided by RESTf
+<DIV> Isolated addresses and walletsYour crypto funds are isolated from other customer
+<DIV> Isolated addresses and walletsYour crypto funds are isolated from other customer
+<DIV> Isolated addresses and walletsYour crypto funds are isolated from other customer
+<DIV> Isolated addresses and walletsYour crypto funds are isolated from other customer
+<SPAN> Isolated addresses and wallets
+<I> 
+<P> Your crypto funds are isolated from other customers. You receive and withdraw cr
+<DIV> Effortless installationEasy-to-use cryptocurrency processor with seamless integr
+<SPAN> Effortless installation
+<I> 
+<P> Easy-to-use cryptocurrency processor with seamless integration provided by RESTf
+<IMG> 
+<IMG> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<DIV> 
+<DIV> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<DIV> 
+<IMG> 
+<SECTION> Switch a fee plan at any time Fixed Fees Percentage Fees For rare transfers with
+<H2> Switch a fee plan at any time
+<DIV> Fixed Fees Percentage Fees
+<LABEL> 
+<INPUT> 
+<SPAN> 
+<DIV> For rare transfers with big amount Micropayments are free No monthly fees or any
+<DIV> For rare transfers with big amount Micropayments are free No monthly fees or any
+<UL> For rare transfers with big amount Micropayments are free No monthly fees or any
+<LI> For rare transfers with big amount
+<SPAN> 
+<I> 
+<LI> Micropayments are free
+<SPAN> 
+<I> 
+<LI> No monthly fees or any amount restrictions
+<SPAN> 
+<I> 
+<LI> Transfer: fixed fee + network fee
+<SPAN> 
+<I> 
+<DIV> 1% for any cryptocurrency Micropayments are free No monthly fees or any amount r
+<UL> 1% for any cryptocurrency Micropayments are free No monthly fees or any amount r
+<LI> 1% for any cryptocurrency
+<SPAN> 
+<I> 
+<LI> Micropayments are free
+<SPAN> 
+<I> 
+<LI> No monthly fees or any amount restrictions
+<SPAN> 
+<I> 
+<LI> Transfer: percent from amount + network fee
+<SPAN> 
+<I> 
+<DIV> Fixed fees For rare transfers with big amount Micropayments are free No monthly 
+<DIV> Fixed fees For rare transfers with big amount Micropayments are free No monthly 
+<DIV> Fixed fees For rare transfers with big amount Micropayments are free No monthly 
+<DIV> Fixed fees For rare transfers with big amount Micropayments are free No monthly 
+<DIV> Fixed fees For rare transfers with big amount Micropayments are free No monthly 
+<H4> Fixed fees
+<UL> For rare transfers with big amount Micropayments are free No monthly fees or any
+<LI> For rare transfers with big amount
+<SPAN> 
+<I> 
+<LI> Micropayments are free
+<SPAN> 
+<I> 
+<LI> No monthly fees or any amount restrictions
+<SPAN> 
+<I> 
+<LI> Transfer: fixed fee + network fee
+<SPAN> 
+<I> 
+<DIV> Percentage 1% for any cryptocurrency Micropayments are free No monthly fees or a
+<DIV> Percentage 1% for any cryptocurrency Micropayments are free No monthly fees or a
+<H4> Percentage
+<UL> 1% for any cryptocurrency Micropayments are free No monthly fees or any amount r
+<LI> 1% for any cryptocurrency
+<SPAN> 
+<I> 
+<LI> Micropayments are free
+<SPAN> 
+<I> 
+<LI> No monthly fees or any amount restrictions
+<SPAN> 
+<I> 
+<LI> Transfer: percent from amount + network fee
+<SPAN> 
+<I> 
+<DIV> Choose Pricing
+<A> Choose Pricing
+<I> 
+<SECTION> Payments in Bitcoin and altcoins  You can accept crypto payments on your website
+<DIV> Payments in Bitcoin and altcoins  You can accept crypto payments on your website
+<DIV> Payments in Bitcoin and altcoins  You can accept crypto payments on your website
+<H2> Payments in Bitcoin and altcoins
+<P> You can accept crypto payments on your website in any currency we support
+<DIV> Litecoin $ 57.84 Tether $ 1 TRON $ 0.35 USDC $ 1 Bitcoin $ 80,748.8 Bitcoin Cash
+<DIV> Litecoin $ 57.84 Tether $ 1 TRON $ 0.35 USDC $ 1 Bitcoin $ 80,748.8 Bitcoin Cash
+<DIV> Litecoin $ 57.84 Tether $ 1 TRON $ 0.35 USDC $ 1 Bitcoin $ 80,748.8 Bitcoin Cash
+<DIV> Bitcoin $ 80,748.8
+<DIV> Bitcoin $ 80,748.8
+<IMG> 
+<H3> Bitcoin
+<SPAN> $ 80,748.8
+<SPAN> $
+<SPAN> 
+<DIV> Bitcoin Cash $ 440.16
+<DIV> Bitcoin Cash $ 440.16
+<IMG> 
+<H3> Bitcoin Cash
+<SPAN> $ 440.16
+<SPAN> $
+<SPAN> 
+<DIV> BNB $ 664.32
+<DIV> BNB $ 664.32
+<IMG> 
+<H3> BNB
+<SPAN> $ 664.32
+<SPAN> $
+<SPAN> 
+<DIV> Dogecoin $ 0.11
+<DIV> Dogecoin $ 0.11
+<IMG> 
+<H3> Dogecoin
+<SPAN> $ 0.11
+<SPAN> $
+<SPAN> 
+<DIV> Ethereum $ 2,284.66
+<DIV> Ethereum $ 2,284.66
+<IMG> 
+<H3> Ethereum
+<SPAN> $ 2,284.66
+<SPAN> $
+<SPAN> 
+<DIV> Litecoin $ 57.84
+<DIV> Litecoin $ 57.84
+<IMG> 
+<H3> Litecoin
+<SPAN> $ 57.84
+<SPAN> $
+<SPAN> 
+<DIV> Tether $ 1
+<DIV> Tether $ 1
+<IMG> 
+<H3> Tether
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<DIV> TRON $ 0.35
+<DIV> TRON $ 0.35
+<IMG> 
+<H3> TRON
+<SPAN> $ 0.35
+<SPAN> $
+<SPAN> 
+<DIV> USDC $ 1
+<DIV> USDC $ 1
+<IMG> 
+<H3> USDC
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<DIV> Bitcoin $ 80,748.8
+<DIV> Bitcoin $ 80,748.8
+<IMG> 
+<H3> Bitcoin
+<SPAN> $ 80,748.8
+<SPAN> $
+<SPAN> 
+<DIV> Bitcoin Cash $ 440.16
+<DIV> Bitcoin Cash $ 440.16
+<IMG> 
+<H3> Bitcoin Cash
+<SPAN> $ 440.16
+<SPAN> $
+<SPAN> 
+<DIV> BNB $ 664.32
+<DIV> BNB $ 664.32
+<IMG> 
+<H3> BNB
+<SPAN> $ 664.32
+<SPAN> $
+<SPAN> 
+<DIV> Dogecoin $ 0.11
+<DIV> Dogecoin $ 0.11
+<IMG> 
+<H3> Dogecoin
+<SPAN> $ 0.11
+<SPAN> $
+<SPAN> 
+<DIV> Ethereum $ 2,284.66
+<DIV> Ethereum $ 2,284.66
+<IMG> 
+<H3> Ethereum
+<SPAN> $ 2,284.66
+<SPAN> $
+<SPAN> 
+<DIV> Litecoin $ 57.84
+<DIV> Litecoin $ 57.84
+<IMG> 
+<H3> Litecoin
+<SPAN> $ 57.84
+<SPAN> $
+<SPAN> 
+<DIV> Tether $ 1
+<DIV> Tether $ 1
+<IMG> 
+<H3> Tether
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<DIV> TRON $ 0.35
+<DIV> TRON $ 0.35
+<IMG> 
+<H3> TRON
+<SPAN> $ 0.35
+<SPAN> $
+<SPAN> 
+<DIV> USDC $ 1
+<DIV> USDC $ 1
+<IMG> 
+<H3> USDC
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<DIV> Bitcoin$ 80,748.8
+<IMG> 
+<H3> Bitcoin
+<SPAN> $ 80,748.8
+<SPAN> $
+<SPAN> 
+<DIV> Bitcoin Cash$ 440.16
+<IMG> 
+<H3> Bitcoin Cash
+<SPAN> $ 440.16
+<SPAN> $
+<SPAN> 
+<DIV> BNB$ 664.32
+<IMG> 
+<H3> BNB
+<SPAN> $ 664.32
+<SPAN> $
+<SPAN> 
+<DIV> Dogecoin$ 0.11
+<IMG> 
+<H3> Dogecoin
+<SPAN> $ 0.11
+<SPAN> $
+<SPAN> 
+<DIV> Ethereum$ 2,284.66
+<IMG> 
+<H3> Ethereum
+<SPAN> $ 2,284.66
+<SPAN> $
+<SPAN> 
+<DIV> Litecoin$ 57.84
+<IMG> 
+<H3> Litecoin
+<SPAN> $ 57.84
+<SPAN> $
+<SPAN> 
+<DIV> Tether$ 1
+<IMG> 
+<H3> Tether
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<DIV> TRON$ 0.35
+<IMG> 
+<H3> TRON
+<SPAN> $ 0.35
+<SPAN> $
+<SPAN> 
+<DIV> USDC$ 1
+<IMG> 
+<H3> USDC
+<SPAN> $ 1
+<SPAN> $
+<SPAN> 
+<SECTION> Integration with CMS platforms for crypto payments  Just copy and paste your add
+<H2> Integration with CMS platforms for crypto payments
+<P> Just copy and paste your address and start accepting bitcoin or altcoins in your
+<DIV> WooCommerce OpenCart PrestaShop
+<DIV> WooCommerce
+<A> WooCommerce
+<IMG> 
+<H3> WooCommerce
+<DIV> OpenCart
+<A> OpenCart
+<IMG> 
+<H3> OpenCart
+<DIV> PrestaShop
+<A> PrestaShop
+<IMG> 
+<H3> PrestaShop
+<DIV> The Best Plugin solution No registration  No need to worry about getting a merch
+<DIV> The Best Plugin solution No registration  No need to worry about getting a merch
+<H2> The Best Plugin solution
+<UL> No registration  No need to worry about getting a merchant application declined 
+<LI> No registration  No need to worry about getting a merchant application declined 
+<SPAN> No registration
+<I> 
+<P> No need to worry about getting a merchant application declined or going through 
+<LI> Around the world  Apirone does business with a lot of customers around the world
+<SPAN> Around the world
+<I> 
+<P> Apirone does business with a lot of customers around the world without any restr
+<DIV> Forwarding of crypto payments  Service of instant transfer of coins from a custo
+<IMG> 
+<UL> Forwarding of crypto payments  Service of instant transfer of coins from a custo
+<LI> Forwarding of crypto payments  Service of instant transfer of coins from a custo
+<SPAN> Forwarding of crypto payments
+<I> 
+<IMG> 
+<P> Service of instant transfer of coins from a customer to a merchant through a tem
+<A> more
+<I> 
+<SECTION> Generate as many new cryptocurrency addresses as you wish.  Unlimited number of 
+<DIV> Generate as many new cryptocurrency addresses as you wish.  Unlimited number of 
+<P> Generate as many new cryptocurrency addresses as you wish.
+<DIV> 
+<H3> Unlimited number of addresses
+<BR> 
+<DIV> Our RESTful API uses SSL as a standard security technology for establishing an e
+<P> Our RESTful API uses SSL as a standard security technology for establishing an e
+<DIV> 
+<H3> Safe and Secure
+<DIV> Instant Withdrawal  Cryptocurrencies deposited to the account or wallet are inst
+<H3> Instant Withdrawal
+<DIV> 
+<P> Cryptocurrencies deposited to the account or wallet are instantly ready for with
+<SECTION> How to accept crypto payments  There are no logos, cut-ins, external pages, or b
+<DIV> How to accept crypto payments  There are no logos, cut-ins, external pages, or b
+<H2> How to accept crypto payments
+<P> There are no logos, cut-ins, external pages, or branded buttons. Use the API as 
+<DIV> Payments form  Minimalistic and user-friendly method to accept crypto with custo
+<DIV> Payments form  Minimalistic and user-friendly method to accept crypto with custo
+<A> Payments form  Minimalistic and user-friendly method to accept crypto with custo
+<DIV> 
+<IMG> 
+<DIV> Payments form  Minimalistic and user-friendly method to accept crypto with custo
+<DIV> Payments form  Minimalistic and user-friendly method to accept crypto with custo
+<H3> Payments form
+<P> Minimalistic and user-friendly method to accept crypto with customizable fields
+<DIV> 
+<A> Mini Cart  A shortcut decision for making purchases online with enhanced functio
+<DIV> 
+<IMG> 
+<DIV> Mini Cart  A shortcut decision for making purchases online with enhanced functio
+<DIV> Mini Cart  A shortcut decision for making purchases online with enhanced functio
+<H3> Mini Cart
+<P> A shortcut decision for making purchases online with enhanced functionality
+<DIV> 
+<DIV> Payments button  Make it easy for your customers to display a button on the prod
+<A> Payments button  Make it easy for your customers to display a button on the prod
+<DIV> 
+<IMG> 
+<DIV> Payments button  Make it easy for your customers to display a button on the prod
+<DIV> Payments button  Make it easy for your customers to display a button on the prod
+<H3> Payments button
+<P> Make it easy for your customers to display a button on the product page to click
+<DIV> 
+<A> Donation Widget  An ultra simple vanilla JS based widget that can be used for an
+<DIV> 
+<IMG> 
+<DIV> Donation Widget  An ultra simple vanilla JS based widget that can be used for an
+<DIV> Donation Widget  An ultra simple vanilla JS based widget that can be used for an
+<H3> Donation Widget
+<P> An ultra simple vanilla JS based widget that can be used for any platform or ser
+<DIV> 
+<SECTION> Easy registration  No email or phone required to create a crypto wallet in our p
+<H2> Easy registration
+<P> No email or phone required to create a crypto wallet in our payment gateway
+<DIV> Click dashboard  Create now  Account or Wallet  Copy Account ID and Transfer key
+<DIV> Click dashboard
+<P> Click dashboard
+<DIV> 
+<DIV> Create now
+<P> Create now
+<DIV> 
+<DIV> Account or Wallet
+<P> Account or Wallet
+<DIV> 
+<DIV> Copy Account ID and Transfer key
+<P> Copy Account ID and Transfer key
+<DIV> 
+<DIV> Log in
+<P> Log in
+<DIV> 
+<DIV> 
+<DIV> Start
+<A> Start
+<I> 
+<FOOTER> support@apirone.com Brand resources Using Cookies Privacy Policy GDPR © 2017-202
+<DIV> support@apirone.com Brand resources Using Cookies Privacy Policy GDPR
+<DIV> support@apirone.com Brand resources Using Cookies Privacy Policy GDPR
+<DIV> support@apirone.com Brand resources Using Cookies Privacy Policy GDPR
+<DIV> support@apirone.com
+<A> 
+<DIV> 
+<IFRAME> 
+<A> support@apirone.com
+<UL> Brand resources Using Cookies Privacy Policy GDPR
+<LI> Brand resources
+<A> Brand resources
+<LI> Using Cookies
+<A> Using Cookies
+<LI> Privacy Policy
+<A> Privacy Policy
+<LI> GDPR
+<A> GDPR
+<DIV> 
+<DIV> 
+<A> 
+<IMG> 
+<A> 
+<IMG> 
+<A> 
+<IMG> 
+<DIV> © 2017-2026 Apirone OÜ. All Rights Reserved.
+<DIV> © 2017-2026 Apirone OÜ. All Rights Reserved.
+<DIV> © 2017-2026 Apirone OÜ. All Rights Reserved.
+<DIV> 
+<A> 
+<IMG> 
+<A> 
+<IMG> 
+<DIV> We use cookies to collect information about authentication, your device, browsin
+<DIV> We use cookies to collect information about authentication, your device, browsin
+<IMG> 
+<P> We use cookies to collect information about authentication, your device, browsin
+<A> use cookies
+<DIV> Accept
+<BUTTON> Accept
+<I> 
+<BUTTON> 
+<I> 
+<DIV> 
+<SCRIPT> window.__NUXT__={};window.__NUXT__.config={public:{serviceUrl:"https://apirone.c
+<SCRIPT> [{"state":1,"once":10,"_errors":11,"serverRendered":13,"path":14,"prerenderedAt"
+<DIV> 
+<DIV> 
+<IFRAME> 
+<IFRAME> 

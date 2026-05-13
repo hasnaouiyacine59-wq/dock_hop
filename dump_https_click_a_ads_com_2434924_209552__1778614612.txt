@@ -1,0 +1,22 @@
+title:  | url: https://click.a-ads.com/2434924/209552/
+
+<HTML> Please wait, before proceeding to the site, we must verify that you are not a ro
+<HEAD> h2 {       color: green;     }     #thank_you {       visibility: hidden;     } 
+<SCRIPT> 
+<SCRIPT> 
+<STYLE> h2 {       color: green;     }     #thank_you {       visibility: hidden;     } 
+<BODY> Please wait, before proceeding to the site, we must verify that you are not a ro
+<SCRIPT> grecaptcha.ready(function() {       grecaptcha.execute("6Ld3snoUAAAAAOd74jcJlLUu
+<DIV> Please wait, before proceeding to the site, we must verify that you are not a ro
+<DIV> Please wait, before proceeding to the site, we must verify that you are not a ro
+<SMALL> Please wait, before proceeding to the site, we must verify that you are not a ro
+<DIV> 
+<H2> 
+<A> 
+<DIV> 
+<DIV> 
+<DIV> 
+<IFRAME> 
+<DIV> 
+<TEXTAREA> 
+<IFRAME> 
