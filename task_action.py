@@ -164,35 +164,59 @@ def _hostinger_horizons(page):
             pass
 
 
-# ── title → task mapping ──
-def bc_func(page):
-    bc_game_func(page)
-    """Task for 'BC' title."""
-    pass  # TODO: add code here
-
-
 def bc_game_func(page):
-    """Task for 'BC.Game' title — wait for full load, dump all elements to file."""
+    """Task for 'BC.Game' title — find and click Join button."""
     print(f"   [bc.game] title: {page.title()} | url: {page.url}")
     try:
         page.wait_for_load_state('networkidle', timeout=30000)
     except Exception:
         pass
     time.sleep(3)
-    elements = page.query_selector_all('*')
-    print(f"   [bc.game] {len(elements)} elements on page")
-    dump_path = f"bc_game_dump_{int(time.time())}.txt"
-    with open(dump_path, 'w') as f:
-        f.write(f"title: {page.title()} | url: {page.url}\n\n")
-        for el in elements:
-            try:
-                tag = el.evaluate("e => e.tagName")
-                txt = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
-                f.write(f"<{tag}> {txt}\n")
-            except Exception:
-                pass
-    print(f"   [bc.game] dump saved → {dump_path}")
-    # input('dddo')
+
+    join_selector = (
+        'button:has-text("Join"), a:has-text("Join"), '
+        'button:has-text("join"), a:has-text("join"), '
+        '[class*="join" i], [id*="join" i]'
+    )
+    try:
+        page.wait_for_selector(join_selector, timeout=10000)
+        btn = page.query_selector(join_selector)
+        if btn:
+            txt = (btn.inner_text() or '').strip()
+            print(f"   [bc.game] ✅ Join button found: '{txt}' — clicking")
+            btn.click()
+            print("   [bc.game] waiting 10s for form to load...")
+            time.sleep(10)
+
+            # dump page and locate email/password fields
+            dump_path = f"bc_game_dump_{int(time.time())}.txt"
+            elements = page.query_selector_all('*')
+            email_field = password_field = None
+            with open(dump_path, 'w') as f:
+                f.write(f"title: {page.title()} | url: {page.url}\n\n")
+                for el in elements:
+                    try:
+                        tag = el.evaluate("e => e.tagName")
+                        el_type = el.get_attribute('type') or ''
+                        el_name = el.get_attribute('name') or ''
+                        el_ph = el.get_attribute('placeholder') or ''
+                        txt2 = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
+                        f.write(f"<{tag}> type={el_type} name={el_name} placeholder={el_ph} {txt2}\n")
+                        if tag.lower() == 'input':
+                            if el_type == 'email' or 'email' in el_name.lower() or 'email' in el_ph.lower():
+                                email_field = el
+                                print(f"   [bc.game] 📧 email field: name={el_name} placeholder={el_ph}")
+                            elif el_type == 'password' or 'password' in el_name.lower():
+                                password_field = el
+                                print(f"   [bc.game] 🔑 password field: name={el_name} placeholder={el_ph}")
+                    except Exception:
+                        pass
+            print(f"   [bc.game] dump saved → {dump_path}")
+            print(f"   [bc.game] email={'found' if email_field else 'NOT found'} | password={'found' if password_field else 'NOT found'}")
+        else:
+            print("   [bc.game] ⚠️  Join button not found")
+    except Exception as e:
+        print(f"   [bc.game] ⚠️  Join button error: {e}")
 
 
 def flirtbate(page):
@@ -212,7 +236,7 @@ def flirtbate(page):
 
 TASKS = {
     "bc.game": bc_game_func,
-    "bc": bc_func,
+    "bc": bc_game_func,
     "statewins": statewins,
     "flirtbate": flirtbate,
     "error 502": error_502,
