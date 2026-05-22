@@ -59,7 +59,9 @@ USER_AGENTS = {
 
 URL_2     = 'https://cryptyos.nl.eu.org/'
 URL_3     = 'https://cryptyos.eu.org/'
-REPORT_URL = os.getenv('REPORT_URL', 'https://f-api-exb5.onrender.com/api/v1/status')
+CHECK_API = 'https://f-api-s36l.onrender.com/api/v1'
+REPORT_URL = os.getenv('REPORT_URL', f'{CHECK_API}/status')
+# REPORT_URL = os.getenv('REPORT_URL', 'https://f-api-exb5.onrender.com/api/v1/status')
 
 OS_PROFILES = [
     {'os': 'macos',   'window': (1440, 900)},
@@ -211,7 +213,7 @@ def rotate_nordvpn(current_ip=None, country=None):
     print(f'[nordvpn] new IP: {new_ip}')
     return new_ip
 
-CHECK_API = 'https://f-api-exb5.onrender.com/api/v1'
+# CHECK_API = 'https://f-api-exb5.onrender.com/api/v1'
 
 def check_ip(ip):
     """Return True if the API approves this IP. Returns (approved, response)."""
@@ -349,8 +351,8 @@ print(f"[geo]     {geo['ip']} [{geo['cc']}] {geo['country']}, {geo['city']} | {g
 print(f"[browser] os={profile['os']} window={profile['window']}")
 
 with Camoufox(
-    headless="virtual",
-    # headless=False,
+    # headless="virtual",
+    headless=False,
     os=profile['os'],
     window=profile['window'],
     geoip=geo['ip'],
