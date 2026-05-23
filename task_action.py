@@ -188,31 +188,23 @@ def bc_game_func(page):
             print("   [bc.game] waiting 10s for form to load...")
             time.sleep(10)
 
-            # dump page and locate email/password fields
-            dump_path = f"bc_game_dump_{int(time.time())}.txt"
-            elements = page.query_selector_all('*')
-            email_field = password_field = None
-            with open(dump_path, 'w') as f:
-                f.write(f"title: {page.title()} | url: {page.url}\n\n")
-                for el in elements:
-                    try:
-                        tag = el.evaluate("e => e.tagName")
-                        el_type = el.get_attribute('type') or ''
-                        el_name = el.get_attribute('name') or ''
-                        el_ph = el.get_attribute('placeholder') or ''
-                        txt2 = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
-                        f.write(f"<{tag}> type={el_type} name={el_name} placeholder={el_ph} {txt2}\n")
-                        if tag.lower() == 'input':
-                            if el_type == 'email' or 'email' in el_name.lower() or 'email' in el_ph.lower():
-                                email_field = el
-                                print(f"   [bc.game] 📧 email field: name={el_name} placeholder={el_ph}")
-                            elif el_type == 'password' or 'password' in el_name.lower():
-                                password_field = el
-                                print(f"   [bc.game] 🔑 password field: name={el_name} placeholder={el_ph}")
-                    except Exception:
-                        pass
-            print(f"   [bc.game] dump saved → {dump_path}")
-            print(f"   [bc.game] email={'found' if email_field else 'NOT found'} | password={'found' if password_field else 'NOT found'}")
+            # find Sign Up button by innerText — language agnostic
+            signup_texts = ["sign up", "signup", "register", "s'inscrire", "registrarse",
+                            "registrar", "cadastrar", "anmelden", "registrieren", "注册", "가입"]
+            signup_btn = page.evaluate("""(texts) => {
+                for (const el of document.querySelectorAll('button, a')) {
+                    const t = (el.innerText || '').trim().toLowerCase();
+                    if (texts.some(s => t === s || t.startsWith(s))) {
+                        el.click();
+                        return el.innerText.trim();
+                    }
+                }
+                return null;
+            }""", signup_texts)
+            if signup_btn:
+                print(f"   [bc.game] ✅ Sign Up clicked: '{signup_btn}'")
+            else:
+                print("   [bc.game] ⚠️  Sign Up button not found")
         else:
             print("   [bc.game] ⚠️  Join button not found")
     except Exception as e:

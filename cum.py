@@ -216,12 +216,17 @@ def rotate_nordvpn(current_ip=None, country=None):
 # CHECK_API = 'https://f-api-exb5.onrender.com/api/v1'
 
 def check_ip(ip):
-    """Return True if the API approves this IP. Returns (approved, response)."""
-    try:
-        r = requests.get(f'{CHECK_API}/{ip}', timeout=10).json()
-        return r.get('used') != 'yes', r
-    except Exception:
-        return False, {}
+    """Return (approved, response). Retries on API errors with 1s sleep."""
+    for attempt in range(3):
+        try:
+            r = requests.get(f'{CHECK_API}/{ip}', timeout=10).json()
+            return r.get('used') != 'yes', r
+        except Exception as e:
+            print(f"[check_ip] ⚠️  attempt {attempt+1}/3 failed: {type(e).__name__}: {e}")
+            if attempt < 2:
+                time.sleep(1)
+    print(f"[check_ip] ❌ all retries failed for {ip}, treating as rejected")
+    return False, {'error': 'api_unreachable'}
 
 def get_approved_ip(country=None):
     """Connect NordVPN and keep rotating until the check API approves the IP."""
