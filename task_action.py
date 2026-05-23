@@ -266,28 +266,8 @@ URL_TASKS = {
 }
 
 
-def _dump_page(page):
-    """Dump all elements to a file named by sanitized title/url."""
-    try:
-        page.wait_for_load_state('networkidle', timeout=15000)
-    except Exception:
-        pass
-    slug = re.sub(r'[^a-z0-9]+', '_', (page.title() or page.url).lower())[:60]
-    dump_path = f"dump_{slug}_{int(time.time())}.txt"
-    elements = page.query_selector_all('*')
-    with open(dump_path, 'w') as f:
-        f.write(f"title: {page.title()} | url: {page.url}\n\n")
-        for el in elements:
-            try:
-                tag = el.evaluate("e => e.tagName")
-                txt = (el.inner_text() or '').strip()[:80].replace('\n', ' ')
-                f.write(f"<{tag}> {txt}\n")
-            except Exception:
-                pass
-    print(f"   [dump] no match — saved → {dump_path}")
-
 def run(title: str, url: str, page):
-    """Match on title first, fallback to URL if title is empty. Dump on no match."""
+    """Match on title first, fallback to URL if title is empty."""
     if title:
         for key, fn in TASKS.items():
             if key in title.lower():
@@ -298,5 +278,4 @@ def run(title: str, url: str, page):
             if key in url:
                 fn(page)
                 return True
-    _dump_page(page)
     return False

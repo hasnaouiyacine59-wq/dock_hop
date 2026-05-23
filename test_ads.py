@@ -2,49 +2,13 @@ import random
 import string
 import time
 import os
-import re
 from camoufox.sync_api import Camoufox
 from browserforge.fingerprints import Screen
 
 os.environ['DISPLAY'] = ':1'
 
 TARGET_URL = "https://landingbc.com/ac2026/crypto.html?trace_id=JXDLHP-1779529825817&od=playwc01.com"
-
 EMAIL_DOMAINS = ["techxbox.eu.org", "beta-sig.eu.org", "itchigho.eu.org", "sec4891.eu.org", "youoneshell.eu.org"]
-
-
-def dump_elements(page, wait=True):
-    if wait:
-        try:
-            page.wait_for_load_state('domcontentloaded', timeout=60000)
-        except Exception:
-            pass
-    slug = re.sub(r'[^a-z0-9]+', '_', (page.title() or page.url).lower())[:60]
-    dump_path = f"dump_{slug}_{int(time.time())}.txt"
-    elements = page.evaluate("""() => Array.from(document.querySelectorAll('*')).map(e => {
-        const data = {};
-        for (const a of e.attributes)
-            if (a.name.startsWith('data-')) data[a.name] = a.value;
-        return [
-            e.tagName,
-            e.id || '',
-            e.className || '',
-            e.getAttribute('href') || '',
-            e.getAttribute('type') || '',
-            e.getAttribute('name') || '',
-            JSON.stringify(data),
-            (e.innerText || '').trim().slice(0, 80).replace(/\\n/g, ' ')
-        ].join('\\x00');
-    })""")
-    with open(dump_path, 'w') as f:
-        f.write(f"title: {page.title()} | url: {page.url}\n\n")
-        for row in elements:
-            tag, el_id, el_class, href, typ, name, data, txt = row.split('\x00')
-            f.write(f"<{tag}> id={el_id} class={el_class} href={href} "
-                    f"type={typ} name={name} data={data} | {txt}\n")
-    print(f"[dump] saved → {dump_path}")
-    return dump_path
-
 
 def human_scroll(page):
     total_height = page.evaluate("document.body.scrollHeight")
@@ -195,7 +159,6 @@ def fill_signup_form(page):
     try:
         page.wait_for_selector('button[type=submit]', state='hidden', timeout=10000)
         print("[form] ✅ signup complete")
-        dump_elements(page, wait=False)
     except Exception:
         print("[form] ⚠️  submit button still visible")
     time.sleep(10)
