@@ -1,0 +1,179 @@
+title:  | url: https://promotion.wcwin04.com/activity/first-bet/en
+
+<HTML> id= class=__variable_f224e6 href= type= name= data={"data-theme":"dark"} | 7emtm6uio4 NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place you
+<HEAD> id= class= href= type= name= data={} | 
+<META> id= class= href= type= name= data={} | 
+<META> id= class= href= type= name=viewport data={} | 
+<LINK> id= class= href=/_next/static/media/icon-win-crown.780a94d3.png type= name= data={} | 
+<LINK> id= class= href=/_next/static/media/icon-lose-ticket.9afa30b0.png type= name= data={} | 
+<LINK> id= class= href=/_next/static/media/field-mobile.f11ae70c.png type= name= data={} | 
+<LINK> id= class= href=/_next/static/media/field-pc.ce13d993.png type= name= data={} | 
+<LINK> id= class= href=/substation/bc/logo/logo.png type= name= data={} | 
+<LINK> id= class= href=/_next/static/css/c09f3fe41aa6bbdf.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/b1622c3daa3e06aa.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/7c81f1e1351f6790.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/99b77c1c742e50fe.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/7ac522df5777cf3b.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/412df959ff7199cb.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/css/2d66d58142e65932.css type= name= data={"data-precedence":"next"} | 
+<LINK> id= class= href=/_next/static/chunks/webpack-120b860b4325fc73.js type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<META> id= class= href= type= name=next-size-adjust data={} | 
+<LINK> id= class= href=/favicon.ico type= name= data={} | 
+<LINK> id= class= href=/favicon-32x32.png type=image/png name= data={} | 
+<LINK> id= class= href=/favicon-16x16.png type=image/png name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | 
+<LINK> id= class= href=/_next/static/media/0abfcfd8f3a76125-s.p.woff2 type=font/woff2 name= data={} | 
+<LINK> id= class= href=/_next/static/media/30d23c7155fd23d1-s.p.woff2 type=font/woff2 name= data={} | 
+<LINK> id= class= href=/_next/static/media/d6c0eeb79ce57393-s.p.woff2 type=font/woff2 name= data={} | 
+<LINK> id= class= href=/_next/static/media/62c97acc3aa63787-s.p.woff2 type=font/woff2 name= data={} | 
+<LINK> id= class= href=/_next/static/media/hero-mobile.71b03b37.png type= name= data={} | 
+<LINK> id= class= href=/_next/static/media/hero-pc.f9546dad.png type= name= data={} | 
+<BODY> id= class= href= type= name= data={} | 7emtm6uio4 NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place you
+<STYLE> id= class= href= type= name= data={} | body{--site_bg:#0B0D0D;--toast-bg:rgba(17, 17, 17, 0.7);--Pagination-bg:#292D2E;
+<DIV> id=root-container class=antialiased text-gray-800 min-h-screen flex flex-col font-avertaStd  href= type= name= data={} | 7emtm6uio4 NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place you
+<DIV> id= class=sticky top-0  z-50 backdrop-blur px-4 md:px-6 href= type= name= data={} | 7emtm6uio4
+<DIV> id= class= mx-auto w-full py-2 md:py-3 flex items-center gap-2 justify-between max-w-full overflow-hidden md:max-w-7xl href= type= name= data={} | 7emtm6uio4
+<A> id= class=w-28 md:w-44 shrink-0 href=https://wcwin04.com type= name= data={} | 
+<IMG> id= class=w-full href= type= name= data={"data-nimg":"1"} | 
+<DIV> id= class=flex items-center gap-1.5 href= type= name= data={} | 7emtm6uio4
+<BUTTON> id= class=flex items-center gap-1.5 rounded-md text-secondary bg-layer4/60 px-1.5 py-1 href= type= name= data={} | 
+<svg> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<A> id= class=center flex items-center gap-2 href=https://wcwin04.com type= name= data={} | 7emtm6uio4
+<IMG> id= class=h-8 w-8 rounded-full href= type= name= data={} | 
+<DIV> id= class=mr-2.5 text-sm font-semibold text-primary href= type= name= data={} | 7emtm6uio4
+<MAIN> id=main-content class= href= type= name= data={} | NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place your first WC2
+<DIV> id= class=bg-[#121515] -mt-16 href= type= name= data={} | NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place your first WC2
+<SECTION> id= class=relative mx-auto flex aspect-[860/1100] w-full  flex-col items-center justify-center overflow-hidden px-6 text-center sm:aspect-auto sm:h-[570px] href= type= name= data={} | NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place your first WC2
+<DIV> id= class=pointer-events-none absolute inset-0 sm:hidden href= type= name= data={} | 
+<IMG> id= class=object-cover object-center href= type= name= data={"data-nimg":"fill"} | 
+<DIV> id= class=pointer-events-none absolute inset-0 hidden sm:block href= type= name= data={} | 
+<IMG> id= class=object-cover object-top href= type= name= data={"data-nimg":"fill"} | 
+<DIV> id= class=pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#121515]/60 to-transparent href= type= name= data={} | 
+<DIV> id= class=sm:mt-32 relative z-10 flex w-full max-w-[1490px] flex-col items-center gap-3 sm:gap-4 href= type= name= data={} | NEW USERS ONLY YOUR FIRST BET ON US  Register, deposit, and place your first WC2
+<DIV> id= class=relative inline-flex items-center justify-center rounded-full px-4 py-1 styles_glassBadge___6bcI href= type= name= data={} | NEW USERS ONLY
+<SPAN> id= class=text-sm font-semibold leading-normal tracking-wide text-brand sm:text-base href= type= name= data={} | NEW USERS ONLY
+<H1> id= class=__className_ec6dc7 text-4xl text-primary uppercase leading-none sm:text-8xl href= type= name= data={} | YOUR FIRST BET ON US
+<P> id= class=max-w-xl px-2 text-sm font-semibold leading-snug text-secondary sm:px-0 sm:text-lg href= type= name= data={} | Register, deposit, and place your first WC2026 bet with a safety net.
+<DIV> id= class=mt-2 flex w-full items-center justify-center gap-2.5 sm:mt-4 sm:w-auto sm:gap-3 href= type= name= data={} | Deposit View Rules
+<BUTTON> id= class=inline-flex h-12 w-40 items-center justify-center rounded-md bg-brand text-lg font-extrabold text-primary_brand transition hover:brightness-105 sm:h-14 sm:w-60 sm:rounded-lg sm:px-6 href= type=button name= data={} | Deposit
+<BUTTON> id= class=inline-flex h-12 w-40 items-center justify-center rounded-lg border border-third bg-black/5 text-lg font-extrabold text-primary backdrop-blur-sm transition hover:bg-white/10 sm:h-14 sm:w-60 sm:border-white/30 sm:bg-white/5 sm:px-6 sm:backdrop-blur-none href= type=button name= data={} | View Rules
+<SECTION> id= class=max-sm:-mt-36  w-full border-y border-third bg-[#171A1A]/40 backdrop-blur-md href= type= name= data={} | Pending Deposit Insurance Activated Up To $0.00 Pending Bet Settlement Congrats,
+<DIV> id= class=mx-auto flex max-w-[800px] items-start px-4 pt-4 pb-3 href= type= name= data={} | Pending Deposit Insurance Activated Up To $0.00 Pending Bet Settlement Congrats,
+<DIV> id= class=relative flex flex-1 shrink-0 flex-col items-center gap-1 px-1 md:w-52 md:flex-initial md:px-0 href= type= name= data={} | Pending Deposit
+<svg> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<DIV> id= class=text-center text-xs font-extrabold leading-tight md:text-sm md:leading-[18px] text-brand href= type= name= data={} | Pending Deposit
+<BR> id= class= href= type= name= data={} | 
+<DIV> id= class=absolute top-[11px] h-0.5 bg-brand href= type= name= data={} | 
+<DIV> id= class=relative flex flex-1 shrink-0 flex-col items-center gap-1 px-1 md:w-52 md:flex-initial md:px-0 href= type= name= data={} | Insurance Activated Up To $0.00
+<svg> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<DIV> id= class=text-center text-xs font-extrabold leading-tight md:text-sm md:leading-[18px] text-secondary href= type= name= data={} | Insurance Activated Up To $0.00
+<BR> id= class= href= type= name= data={} | 
+<DIV> id= class=absolute top-[11px] h-0.5 bg-[#3A4142] href= type= name= data={} | 
+<DIV> id= class=relative flex flex-1 shrink-0 flex-col items-center gap-1 px-1 md:w-52 md:flex-initial md:px-0 href= type= name= data={} | Pending Bet Settlement
+<svg> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<DIV> id= class=text-center text-xs font-extrabold leading-tight md:text-sm md:leading-[18px] text-secondary href= type= name= data={} | Pending Bet Settlement
+<BR> id= class= href= type= name= data={} | 
+<DIV> id= class=absolute top-[11px] h-0.5 bg-[#3A4142] href= type= name= data={} | 
+<DIV> id= class=relative flex flex-1 shrink-0 flex-col items-center gap-1 px-1 md:w-52 md:flex-initial md:px-0 href= type= name= data={} | Congrats, you won!
+<svg> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<path> id= class=[object SVGAnimatedString] href= type= name= data={} | 
+<DIV> id= class=text-center text-xs font-extrabold leading-tight md:text-sm md:leading-[18px] text-secondary href= type= name= data={} | Congrats, you won!
+<BR> id= class= href= type= name= data={} | 
+<DIV> id= class=relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pt-10 sm:gap-14 sm:pt-5 md:px-0 href= type= name= data={} | HOW IT WORKS FIRST BET INSURANCE 1 Register & deposit  Create a new WCWIN04.COM 
+<SECTION> id= class=flex flex-col gap-5 sm:gap-6 href= type= name= data={} | HOW IT WORKS FIRST BET INSURANCE 1 Register & deposit  Create a new WCWIN04.COM 
+<H2> id= class=text-lg font-extrabold uppercase leading-tight tracking-wide text-primary sm:text-3xl href= type= name= data={} | HOW IT WORKS
+<DIV> id= class=flex flex-col gap-6 rounded-xl border border-white/5 bg-layer1 p-5 sm:gap-8 sm:px-6 sm:pb-8 sm:pt-6 href= type= name= data={} | FIRST BET INSURANCE 1 Register & deposit  Create a new WCWIN04.COM account and m
+<DIV> id= class=flex items-center gap-2.5 href= type= name= data={} | FIRST BET INSURANCE
+<IMG> id= class=h-4 w-4 shrink-0 object-contain sm:h-5 sm:w-5 href= type= name= data={} | 
+<SPAN> id= class=text-base font-extrabold uppercase tracking-wide text-primary sm:text-xl href= type= name= data={} | FIRST BET INSURANCE
+<DIV> id= class=flex flex-col href= type= name= data={} | 1 Register & deposit  Create a new WCWIN04.COM account and make your first depos
+<DIV> id= class=flex items-center gap-3 sm:gap-4 href= type= name= data={} | 1 Register & deposit  Create a new WCWIN04.COM account and make your first depos
+<DIV> id= class=flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold leading-none text-primary_brand sm:h-8 sm:w-8 sm:text-base href= type= name= data={} | 1
+<DIV> id= class=flex flex-1 items-center gap-3.5 rounded-xl border border-layer5 bg-layer1 px-4 py-3 sm:h-28 sm:gap-4 sm:px-6 href= type= name= data={} | Register & deposit  Create a new WCWIN04.COM account and make your first deposit
+<IMG> id= class=h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8 href= type= name= data={} | 
+<DIV> id= class=min-w-0 flex-1 href= type= name= data={} | Register & deposit  Create a new WCWIN04.COM account and make your first deposit
+<H4> id= class=text-base font-extrabold leading-snug text-primary sm:text-xl href= type= name= data={} | Register & deposit
+<P> id= class=text-sm font-semibold leading-relaxed text-[#697072] sm:text-base href= type= name= data={} | Create a new WCWIN04.COM account and make your first deposit of $10 or more.
+<DIV> id= class=-my-3 flex justify-start sm:-my-4 href= type= name= data={} | 
+<DIV> id= class=flex w-7 justify-center sm:w-8 href= type= name= data={} | 
+<IMG> id= class=h-12 w-auto object-contain sm:h-14 href= type= name= data={} | 
+<DIV> id= class=flex items-center gap-3 sm:gap-4 href= type= name= data={} | 2 Place your first WC2026 bet  Bet on any Betby World Cup pre-match 1X2 market
+<DIV> id= class=flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold leading-none text-primary_brand sm:h-8 sm:w-8 sm:text-base href= type= name= data={} | 2
+<DIV> id= class=flex flex-1 items-center gap-3.5 rounded-xl border border-layer5 bg-layer1 px-4 py-3 sm:h-28 sm:gap-4 sm:px-6 href= type= name= data={} | Place your first WC2026 bet  Bet on any Betby World Cup pre-match 1X2 market
+<IMG> id= class=h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8 href= type= name= data={} | 
+<DIV> id= class=min-w-0 flex-1 href= type= name= data={} | Place your first WC2026 bet  Bet on any Betby World Cup pre-match 1X2 market
+<H4> id= class=text-base font-extrabold leading-snug text-primary sm:text-xl href= type= name= data={} | Place your first WC2026 bet
+<P> id= class=text-sm font-semibold leading-relaxed text-[#697072] sm:text-base href= type= name= data={} | Bet on any Betby World Cup pre-match 1X2 market
+<DIV> id= class=-my-3 flex justify-start sm:-my-4 href= type= name= data={} | 
+<DIV> id= class=flex w-7 justify-center sm:w-8 href= type= name= data={} | 
+<IMG> id= class=h-12 w-auto object-contain sm:h-14 href= type= name= data={} | 
+<DIV> id= class=flex items-center gap-3 sm:gap-4 href= type= name= data={} | 3 Win or receive your insurance  Get back up to 20% of your first deposit - up t
+<DIV> id= class=flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold leading-none text-primary_brand sm:h-8 sm:w-8 sm:text-base href= type= name= data={} | 3
+<DIV> id= class=flex flex-1 items-center gap-3.5 rounded-xl border border-layer5 bg-layer1 px-4 py-3 sm:h-28 sm:gap-4 sm:px-6 href= type= name= data={} | Win or receive your insurance  Get back up to 20% of your first deposit - up to 
+<IMG> id= class=h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8 href= type= name= data={} | 
+<DIV> id= class=min-w-0 flex-1 href= type= name= data={} | Win or receive your insurance  Get back up to 20% of your first deposit - up to 
+<H4> id= class=text-base font-extrabold leading-snug text-primary sm:text-xl href= type= name= data={} | Win or receive your insurance
+<P> id= class=text-sm font-semibold leading-relaxed text-[#697072] sm:text-base href= type= name= data={} | Get back up to 20% of your first deposit - up to $100
+<DIV> id= class=grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 href= type= name= data={} | IF YOU WIN  Real Cash winnings paid as normal. Insurance not needed - you're ahe
+<DIV> id= class=flex flex-col gap-3 rounded-xl border p-5 border-success/30 styles_winCardGlow__vIRjO href= type= name= data={} | IF YOU WIN  Real Cash winnings paid as normal. Insurance not needed - you're ahe
+<IMG> id= class=h-7 w-7 object-contain sm:h-8 sm:w-8 href= type= name= data={} | 
+<H3> id= class=text-xl font-extrabold leading-snug sm:text-2xl text-primary href= type= name= data={} | IF YOU WIN
+<P> id= class=text-sm font-semibold leading-relaxed text-[#697072] sm:text-base href= type= name= data={} | Real Cash winnings paid as normal. Insurance not needed - you're ahead.
+<DIV> id= class=flex flex-col gap-3 rounded-xl border p-5 border-warning/30 styles_loseCardGlow__JUctt href= type= name= data={} | IF YOU LOSE  Get up to 20% of your first deposit back as a Free Bet, up to $100.
+<IMG> id= class=h-7 w-7 object-contain sm:h-8 sm:w-8 href= type= name= data={} | 
+<H3> id= class=text-xl font-extrabold leading-snug sm:text-2xl text-warning_brighter href= type= name= data={} | IF YOU LOSE
+<P> id= class=text-sm font-semibold leading-relaxed text-[#697072] sm:text-base href= type= name= data={} | Get up to 20% of your first deposit back as a Free Bet, up to $100. Bet less tha
+<DIV> id= class=grid grid-cols-3 gap-3 sm:gap-4 href= type= name= data={} | $100 Max Refund 1.50 Min odds 7D Free Bet expiry
+<DIV> id= class=flex flex-col items-center text-brand justify-center gap-3 rounded-xl border border-layer5 py-6 sm:h-36 sm:gap-4 sm:py-0 href= type= name= data={} | $100 Max Refund
+<SPAN> id= class=text-3xl font-extrabold leading-none sm:text-5xl href= type= name= data={} | $100
+<SPAN> id= class=text-xs font-semibold leading-normal text-secondary sm:text-lg href= type= name= data={} | Max Refund
+<DIV> id= class=flex flex-col items-center text-brand justify-center gap-3 rounded-xl border border-layer5 py-6 sm:h-36 sm:gap-4 sm:py-0 bg-layer1 href= type= name= data={} | 1.50 Min odds
+<SPAN> id= class=text-3xl font-extrabold leading-none sm:text-5xl href= type= name= data={} | 1.50
+<SPAN> id= class=text-xs font-semibold leading-normal text-secondary sm:text-lg href= type= name= data={} | Min odds
+<DIV> id= class=flex flex-col items-center text-brand justify-center gap-3 rounded-xl border border-layer5 py-6 sm:h-36 sm:gap-4 sm:py-0 bg-layer1 href= type= name= data={} | 7D Free Bet expiry
+<SPAN> id= class=text-3xl font-extrabold leading-none sm:text-5xl href= type= name= data={} | 7D
+<SPAN> id= class=text-xs font-semibold leading-normal text-secondary sm:text-lg href= type= name= data={} | Free Bet expiry
+<DIV> id= class=px-4 pt-10 sm:px-0 sm:pt-14 pb-10 sm:pb-16 href= type= name= data={} | READY TO BET?  Register now and your first WC bet is protected.  View World Cup 
+<SECTION> id= class=max-sm:h-96 relative rounded-xl sm:rounded-none href= type= name= data={} | READY TO BET?  Register now and your first WC bet is protected.  View World Cup 
+<IMG> id= class=pointer-events-none h-96 absolute inset-0 w-full object-cover sm:hidden href= type= name= data={} | 
+<IMG> id= class=pointer-events-none absolute mx-auto inset-0 w-fit -top-32 hidden h-[530px] object-cover sm:block href= type= name= data={} | 
+<DIV> id= class=relative z-10 flex flex-col items-center gap-5 px-4 py-0 text-center sm:gap-7 sm:py-16 sm:h-96 href= type= name= data={} | READY TO BET?  Register now and your first WC bet is protected.  View World Cup 
+<DIV> id= class=flex flex-col items-center gap-3 sm:gap-5 href= type= name= data={} | READY TO BET?  Register now and your first WC bet is protected.
+<H2> id= class=text-5xl font-extrabold uppercase leading-tight tracking-tight text-primary sm:text-6xl href= type= name= data={} | READY TO BET?
+<P> id= class=max-w-xl text-sm font-semibold leading-normal text-primary sm:text-base href= type= name= data={} | Register now and your first WC bet is protected.
+<DIV> id= class=flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:w-auto sm:flex-row href= type= name= data={} | View World Cup Markets
+<BUTTON> id= class=inline-flex items-center justify-center rounded-lg bg-brand h-14 text-base font-extrabold leading-snug text-primary_brand sm:px-18 sm:text-lg styles_ctaButton__fpT_h href= type=button name= data={} | View World Cup Markets
+<DIV> id= class=text-xs sm:text-base relative max-w-7xl mx-auto text-primary text-opacity-50 pt-8 mt-8 md:pt-16 md:mt-16 pb-6 px-4 md:px-6 href= type= name= data={} | The ultimate crypto gaming destination, trusted by millions worldwide. We bring 
+<DIV> id= class=flex max-w-300 flex-col justify-center text-xs font-semibold text-secondary mb-4 href= type= name= data={} | The ultimate crypto gaming destination, trusted by millions worldwide. We bring 
+<DIV> id= class=grid grid-cols-1 grid-rows-2 gap-x-8 gap-y-3 px-4 href= type= name= data={} | The ultimate crypto gaming destination, trusted by millions worldwide. We bring 
+<DIV> id= class=flex min-h-15 items-center gap-4 href= type= name= data={} | 
+<IMG> id= class=h-8 mx-auto href= type= name= data={} | 
+<DIV> id= class=flex min-h-15 href= type= name= data={} | 
+<DIV> id= class=flex flex-col text-center text-quarterary href= type= name= data={} | The ultimate crypto gaming destination, trusted by millions worldwide. We bring 
+<P> id= class=leading-5 href= type= name= data={} | The ultimate crypto gaming destination, trusted by millions worldwide. We bring 
+<P> id= class=leading-5 href= type= name= data={} | Your use of and access to BC.GAME signifies that you fully understand and agree 
+<P> id= class=leading-5 href= type= name= data={} | Crypto trading is not gambling by definition, therefore it is not covered by our
+<DIV> id= class=solid mt-8 border-t border-[#e4eaf019] px-4 pb-2 pt-8 text-center sm:px-0 href= type= name= data={} | Copyright ©2026 PROMOTION.WCWIN04.COM ALL RIGHTS RESERVED. 1BTC=$75,443.46
+<SPAN> id= class= href= type= name= data={} | Copyright ©2026 PROMOTION.WCWIN04.COM ALL RIGHTS RESERVED. 1BTC=$75,443.46
+<SCRIPT> id= class= href= type= name= data={} | 
+<SCRIPT> id= class= href= type= name= data={} | (self.__next_f=self.__next_f||[]).push([0])
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,"1:\"$Sreact.fragment\"\n3:I[32952,[],\"\"]\n4:I[11150,[],
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,".js\",\"4720\",\"static/chunks/4720-6f56c025ead09006.js\"
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,"0:{\"P\":null,\"b\":\"uuAh7KctvOHUor6yjvYMk\",\"p\":\"\",
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,"2:[\"$\",\"html\",null,{\"className\":\"__variable_f224e6
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,"5:[\"$\",\"$Ld\",null,{\"translations\":{\"10\":\"10\",\"
+<SCRIPT> id= class= href= type= name= data={} | self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content
+<SCRIPT> id= class= href= type= name= data={"data-cf-beacon":"{\"version\":\"2024.11.0\",\"token\":\"51df4370b08f4b9284ad5a7c53d762f9\",\"server_timing\":{\"name\":{\"cfCacheStatus\":true,\"cfEdge\":true,\"cfExtPri\":true,\"cfL4\":true,\"cfOrigin\":true,\"cfSpeedBrain\":true},\"location_startswith\":null}}"} | 
+<NEXT-ROUTE-ANNOUNCER> id= class= href= type= name= data={} | 

@@ -249,20 +249,20 @@ TASKS = {
     "hostinger horizons": lambda page: _hostinger_horizons(page),
 }
 
-def landingbc(page):
-    """Task for landingbc.com — click Join Now then dump."""
-    try:
-        page.wait_for_selector('button:has-text("Join Now"), a:has-text("Join Now")', timeout=15000)
-        page.click('button:has-text("Join Now"), a:has-text("Join Now")')
-        print("   [landingbc] ✅ Join Now clicked")
-        time.sleep(random.uniform(2, 4))
-    except Exception as e:
-        print(f"   [landingbc] ⚠️  Join Now not found: {e}")
-    _dump_page(page)
+# def landingbc(page):
+#     """Task for landingbc.com — click Join Now then dump."""
+#     try:
+#         page.wait_for_selector('button:has-text("Join Now"), a:has-text("Join Now")', timeout=15000)
+#         page.click('button:has-text("Join Now"), a:has-text("Join Now")')
+#         print("   [landingbc] ✅ Join Now clicked")
+#         time.sleep(random.uniform(2, 4))
+#     except Exception as e:
+#         print(f"   [landingbc] ⚠️  Join Now not found: {e}")
+#     _dump_page(page)
 
 
 URL_TASKS = {
-    "landingbc.com": landingbc,
+#    "landingbc.com": landingbc,
 }
 
 
