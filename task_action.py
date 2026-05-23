@@ -164,6 +164,62 @@ def _hostinger_horizons(page):
             pass
 
 
+def _bc_fill_form(page):
+    """Fill the BC.Game signup dialog with generated email/password."""
+    try:
+        page.wait_for_selector('div.login-layout-dialog input[type=password]', timeout=120000)
+    except Exception:
+        print("   [bc.game] ⚠️  signup form not found")
+        return False
+
+    dialog = page.query_selector('div.login-layout-dialog')
+    email = _gen_email()
+    password = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$', k=12))
+
+    email_input = dialog.query_selector('input:not([type=password])')
+    if email_input:
+        email_input.click()
+        email_input.click(click_count=3)
+        email_input.fill(email)
+        box = email_input.bounding_box()
+        page.mouse.click(box['x'] + box['width'] / 2, box['y'] - 30)
+
+    pwd_input = dialog.query_selector('input[type=password]')
+    if pwd_input:
+        pwd_input.click(click_count=3)
+        pwd_input.fill(password)
+
+    checkbox = dialog.query_selector('button.checkbox')
+    if checkbox:
+        already_checked = checkbox.evaluate("""e => {
+            if (e.getAttribute('aria-checked') === 'true') return true;
+            if (e.classList.contains('checked') || e.classList.contains('active') || e.classList.contains('btn-like--active')) return true;
+            const ico = e.querySelector('.checkbox-ico');
+            if (ico) {
+                const s = window.getComputedStyle(ico);
+                if (s.opacity !== '0' && s.display !== 'none' && s.visibility !== 'hidden') return true;
+            }
+            return false;
+        }""")
+        if not already_checked:
+            checkbox.click()
+
+    submit = dialog.query_selector('button[type=submit]')
+    if submit:
+        submit.click()
+    else:
+        page.keyboard.press('Enter')
+    print(f"   [bc.game] ✅ form submitted — email={email} password={password}")
+
+    try:
+        page.wait_for_selector('button[type=submit]', state='hidden', timeout=10000)
+        print("   [bc.game] ✅ signup complete")
+    except Exception:
+        print("   [bc.game] ⚠️  submit button still visible")
+    time.sleep(10)
+    return True
+
+
 def bc_game_func(page):
     """Task for 'BC.Game' title — find and click Join button."""
     print(f"   [bc.game] title: {page.title()} | url: {page.url}")
@@ -203,6 +259,8 @@ def bc_game_func(page):
             }""", signup_texts)
             if signup_btn:
                 print(f"   [bc.game] ✅ Sign Up clicked: '{signup_btn}'")
+                # fill the signup form
+                _bc_fill_form(page)
             else:
                 print("   [bc.game] ⚠️  Sign Up button not found")
         else:
