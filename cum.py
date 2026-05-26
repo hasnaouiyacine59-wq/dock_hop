@@ -58,7 +58,8 @@ USER_AGENTS = {
 # import creep_session
 
 URL_2     = 'https://cryptyos.nl.eu.org/'
-URL_3     = 'https://cryptyos.eu.org/'
+URL_3     = 'https://zacrypto.nl.eu.org/'
+# URL_3     = 'https://cryptyos.eu.org/'
 CHECK_API = 'https://f-api-s36l.onrender.com/api/v1'
 REPORT_URL = os.getenv('REPORT_URL', f'{CHECK_API}/status')
 # REPORT_URL = os.getenv('REPORT_URL', 'https://f-api-exb5.onrender.com/api/v1/status')

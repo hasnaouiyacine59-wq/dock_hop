@@ -81,3 +81,5 @@ Bolivia
 Liechtenstein
 Japan
 Barbados
+Panama
+Costa_Rica
