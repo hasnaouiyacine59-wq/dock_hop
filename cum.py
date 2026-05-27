@@ -384,6 +384,39 @@ with Camoufox(
     #     json.dump(saved, f, indent=2)
     # print(f"[geo] saved to session {report['session_id']}")
 
+    # ── run ads.py flow (visit aads.com + send chat message) ──
+    import ads as _ads
+    _ads.run(page)
+    try:
+        page.wait_for_load_state('networkidle', timeout=15000)
+    except Exception:
+        pass
+    try:
+        chat_btn = page.locator('[data-type="chat"][aria-label="Chat with AADS"]').first
+        chat_btn.wait_for(state='visible', timeout=20000)
+        chat_btn.click()
+        import time as _time
+        _time.sleep(6)
+        crisp_frame = next((fr for fr in page.frames if 'crisp' in fr.url), None)
+        if not crisp_frame:
+            crisp_frame = next((fr for fr in page.frames if fr.locator('textarea[name="message"]').count() > 0), None)
+        if crisp_frame:
+            import random as _random
+            import ads as _ads_mod
+            msg_box = crisp_frame.locator('textarea[name="message"]')
+            msg_box.wait_for(state='visible', timeout=15000)
+            msg_box.click()
+            msg_box.type(_random.choice(_ads_mod.CHAT_MESSAGES), delay=60)
+            msg_box.press('Enter')
+            _time.sleep(_random.uniform(2, 4))
+            msg_box.click()
+            msg_box.type(_random.choice(_ads_mod.MONEY_MESSAGES), delay=60)
+            msg_box.press('Enter')
+            print("[ads] chat messages sent")
+    except Exception as _e:
+        print(f"[ads] chat failed: {_e}")
+    _time.sleep(_random.uniform(15, 30))
+
     # ── visit URL_3 first, then switch to URL_2 in the same tab ──
     def lik():
         print('── visit URL_3 first, then switch to URL_2 in the same tab ──')
