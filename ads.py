@@ -217,34 +217,34 @@ if __name__ == '__main__':
         #     print(f"[ads] signup failed: {e}")
         # --- END SIGNUP ---
 
-        # Click "Chat with AADS"
-        try:
-            chat_btn = page.locator('[data-type="chat"][aria-label="Chat with AADS"]').first
-            chat_btn.wait_for(state='visible', timeout=20000)
-            chat_btn.click()
-            print("[ads] Chat with AADS clicked")
-            time.sleep(6)
+        # # Click "Chat with AADS"
+        # try:
+        #     chat_btn = page.locator('[data-type="chat"][aria-label="Chat with AADS"]').first
+        #     chat_btn.wait_for(state='visible', timeout=20000)
+        #     chat_btn.click()
+        #     print("[ads] Chat with AADS clicked")
+        #     time.sleep(6)
 
-            crisp_frame = next((fr for fr in page.frames if 'crisp' in fr.url), None)
-            if not crisp_frame:
-                crisp_frame = next((fr for fr in page.frames if fr.locator('textarea[name="message"]').count() > 0), None)
+        #     crisp_frame = next((fr for fr in page.frames if 'crisp' in fr.url), None)
+        #     if not crisp_frame:
+        #         crisp_frame = next((fr for fr in page.frames if fr.locator('textarea[name="message"]').count() > 0), None)
 
-            if crisp_frame:
-                msg_box = crisp_frame.locator('textarea[name="message"]')
-                msg_box.wait_for(state='visible', timeout=15000)
-                msg_box.click()
-                msg_box.type(random.choice(CHAT_MESSAGES), delay=60)
-                msg_box.press('Enter')
-                print("[ads] chat message sent")
+        #     if crisp_frame:
+        #         msg_box = crisp_frame.locator('textarea[name="message"]')
+        #         msg_box.wait_for(state='visible', timeout=15000)
+        #         msg_box.click()
+        #         msg_box.type(random.choice(CHAT_MESSAGES), delay=60)
+        #         msg_box.press('Enter')
+        #         print("[ads] chat message sent")
 
-                time.sleep(random.uniform(2, 4))
-                msg_box.click()
-                msg_box.type(random.choice(MONEY_MESSAGES), delay=60)
-                msg_box.press('Enter')
-                print("[ads] second chat message sent")
-            else:
-                print("[ads] crisp iframe not found")
-        except Exception as e:
-            print(f"[ads] chat failed: {e}")
+        #         time.sleep(random.uniform(2, 4))
+        #         msg_box.click()
+        #         msg_box.type(random.choice(MONEY_MESSAGES), delay=60)
+        #         msg_box.press('Enter')
+        #         print("[ads] second chat message sent")
+        #     else:
+        #         print("[ads] crisp iframe not found")
+        # except Exception as e:
+        #     print(f"[ads] chat failed: {e}")
 
         time.sleep(random.uniform(15, 30))

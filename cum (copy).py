@@ -58,7 +58,7 @@ USER_AGENTS = {
 # import creep_session
 
 URL_2     = 'https://cryptyos.nl.eu.org/'
-URL_3     = 'https://alpha-sig.eu.org/'
+URL_3     = 'https://beta-sig.eu.org/'
 # URL_3     = 'https://cryptyos.eu.org/'
 CHECK_API = 'https://f-api-s36l.onrender.com/api/v1'
 REPORT_URL = os.getenv('REPORT_URL', f'{CHECK_API}/status')
@@ -562,7 +562,7 @@ with Camoufox(
     except Exception as e:
         print(f"[iframe] ⚠️  {e}")
 
-    time.sleep(22)   # total human-action window on URL_3 ≈ 30s (5s initial + ~3s mouse + 22s here)
+    time.sleep(20)
     #new step
     lik()
 
