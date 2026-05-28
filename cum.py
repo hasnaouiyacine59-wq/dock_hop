@@ -418,59 +418,59 @@ with Camoufox(
     # _time.sleep(_random.uniform(15, 30))
 
     # ── visit URL_3 first, then switch to URL_2 in the same tab ──
-    def lik():
-        print('── visit URL_3 first, then switch to URL_2 in the same tab ──')
-        iframes = page.query_selector_all('iframe')
-        for i, fr in enumerate(iframes):
-            try:
-                box = fr.bounding_box()
-                if not box:
-                    continue
-                tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
-                ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
-                page.mouse.move(tx, ty, steps=2)
-                print(f"[tab] hovering iframe-{i}")
-                time.sleep(0.1)
+    # def lik():
+    #     print('── visit URL_3 first, then switch to URL_2 in the same tab ──')
+    #     iframes = page.query_selector_all('iframe')
+    #     for i, fr in enumerate(iframes):
+    #         try:
+    #             box = fr.bounding_box()
+    #             if not box:
+    #                 continue
+    #             tx = box['x'] + box['width']  * random.uniform(0.3, 0.7)
+    #             ty = box['y'] + box['height'] * random.uniform(0.3, 0.7)
+    #             page.mouse.move(tx, ty, steps=2)
+    #             print(f"[tab] hovering iframe-{i}")
+    #             time.sleep(0.1)
 
-                # click and wait for new tab
-                with page.context.expect_page() as new_page_info:
-                    page.mouse.click(tx, ty)
-                new_tab = new_page_info.value
-                new_tab.bring_to_front()
-                new_tab.wait_for_load_state('load', timeout=20000)
-                print(f"[tab] new tab opened")
-                # track title changes through redirections — exit when idle 15s
-                last_title = None
-                idle = 0
-                while idle < 15:
-                    try:
-                        title = new_tab.title()
-                        print(f"[tab] title: {repr(title)} | {new_tab.url}")
-                        key = title or new_tab.url
-                        if key and key != last_title:
-                            last_title = key
-                            idle = 0
-                            if task_action.run(title, new_tab.url, new_tab):
-                                break
-                        else:
-                            idle += 1
-                    except Exception:
-                        if new_tab.is_closed():
-                            print("[tab] tab closed itself, exiting loop")
-                            break
-                        idle += 1
-                    time.sleep(1)
+    #             # click and wait for new tab
+    #             with page.context.expect_page() as new_page_info:
+    #                 page.mouse.click(tx, ty)
+    #             new_tab = new_page_info.value
+    #             new_tab.bring_to_front()
+    #             new_tab.wait_for_load_state('load', timeout=20000)
+    #             print(f"[tab] new tab opened")
+    #             # track title changes through redirections — exit when idle 15s
+    #             last_title = None
+    #             idle = 0
+    #             while idle < 15:
+    #                 try:
+    #                     title = new_tab.title()
+    #                     print(f"[tab] title: {repr(title)} | {new_tab.url}")
+    #                     key = title or new_tab.url
+    #                     if key and key != last_title:
+    #                         last_title = key
+    #                         idle = 0
+    #                         if task_action.run(title, new_tab.url, new_tab):
+    #                             break
+    #                     else:
+    #                         idle += 1
+    #                 except Exception:
+    #                     if new_tab.is_closed():
+    #                         print("[tab] tab closed itself, exiting loop")
+    #                         break
+    #                     idle += 1
+    #                 time.sleep(1)
 
-                new_tab.close()
-                # ensure exactly 1 tab remains and bring it to front
-                pages = page.context.pages
-                print(f"[tab] closed, tabs remaining: {len(pages)}")
-                if pages:
-                    pages[0].bring_to_front()
-                    print(f"[tab] back to main: {pages[0].url}")
+    #             new_tab.close()
+    #             # ensure exactly 1 tab remains and bring it to front
+    #             pages = page.context.pages
+    #             print(f"[tab] closed, tabs remaining: {len(pages)}")
+    #             if pages:
+    #                 pages[0].bring_to_front()
+    #                 print(f"[tab] back to main: {pages[0].url}")
 
-            except Exception as e:
-                print(f"[tab] ⚠️  iframe-{i}: {e}")
+    #         except Exception as e:
+    #             print(f"[tab] ⚠️  iframe-{i}: {e}")
 
     print(f"\n🌐  Navigating to {URL_3} ...")
     try:
@@ -564,7 +564,7 @@ with Camoufox(
 
     time.sleep(22)   # total human-action window on URL_3 ≈ 30s (5s initial + ~3s mouse + 22s here)
     #new step
-    lik()
+    # lik()
 
     # ── load URL_2 and analyse ──
     # print(f"\n🌐  Navigating to {URL_2} ...")
